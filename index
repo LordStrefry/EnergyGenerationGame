@@ -6,69 +6,76 @@
 <title>Energy Ascension</title>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#080c10;--bg2:#0d1520;--bg3:#111d2e;--panel:#0a1628;
-  --border:#1a3050;--border2:#2a4870;--text:#c8dff5;--muted:#5a7a9a;
-  --accent:#00c8ff;--accent2:#00ff9d;--gold:#ffd700;--red:#ff4444;
-  --orange:#ff8c00;--purple:#a855f7;--white:#e8f4ff;--cell:72px;
-  --rebirth-hue:0deg;
-}
+:root{--bg:#080c10;--bg3:#111d2e;--panel:#0a1628;--border:#1a3050;--border2:#2a4870;--text:#c8dff5;--muted:#5a7a9a;--accent:#00c8ff;--accent2:#00ff9d;--gold:#ffd700;--red:#ff4444;--orange:#ff8c00;--purple:#a855f7;--white:#e8f4ff;--cell:90px;}
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:var(--bg);color:var(--text);font-family:'Share Tech Mono',monospace;overflow:hidden;height:100vh;display:flex;flex-direction:column;transition:filter .3s;}
-body.shake{animation:shake .4s ease-out;}
-@keyframes shake{0%,100%{transform:translate(0)}20%{transform:translate(-4px,2px)}40%{transform:translate(4px,-3px)}60%{transform:translate(-3px,4px)}80%{transform:translate(3px,-2px)}}
+html{font-size:14px;}
+body{background:var(--bg);color:var(--text);font-family:'Share Tech Mono',monospace;overflow:hidden;height:100vh;display:flex;flex-direction:column;}
+body.shake{animation:shake .45s ease-out;}
+@keyframes shake{0%,100%{transform:translate(0)}20%{transform:translate(-5px,3px)}40%{transform:translate(5px,-4px)}60%{transform:translate(-4px,5px)}80%{transform:translate(4px,-3px)}}
 
-/* HEADER */
-#header{background:var(--panel);border-bottom:1px solid var(--border);padding:5px 12px;display:flex;align-items:center;gap:10px;flex-shrink:0;flex-wrap:wrap;}
-#gtitle{font-family:'Orbitron';font-size:13px;font-weight:900;color:var(--accent);letter-spacing:3px;white-space:nowrap;}
-.sblk{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:3px 8px;min-width:82px;}
-.slbl{font-size:7px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
-.sval{font-size:11px;color:var(--accent2);font-weight:bold;white-space:nowrap;}
-.srate{font-size:7px;color:var(--muted);white-space:nowrap;}
+/* ── HEADER ── */
+#hdr{background:var(--panel);border-bottom:2px solid var(--border);padding:8px 14px;display:flex;align-items:center;gap:10px;flex-shrink:0;flex-wrap:wrap;}
+#gtitle{font-family:'Orbitron';font-size:17px;font-weight:900;color:var(--accent);letter-spacing:3px;white-space:nowrap;}
+.sblk{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:5px 11px;min-width:100px;}
+.slbl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+.sval{font-size:15px;color:var(--accent2);font-weight:bold;white-space:nowrap;}
+.srate{font-size:9px;color:var(--muted);white-space:nowrap;}
 .srate b{color:var(--gold);}
-#rebirth-blk{background:linear-gradient(135deg,#1a0a2e,#2a1050);border:1px solid var(--purple);border-radius:4px;padding:3px 8px;}
-#rebirth-blk .slbl{color:#c084fc;}
-#rebirth-blk .sval{color:#e879f9;}
-#era-disp{font-family:'Orbitron';font-size:8px;color:var(--gold);letter-spacing:2px;margin-left:auto;white-space:nowrap;}
-#spd{display:flex;gap:3px;}
-.sb{background:var(--bg3);border:1px solid var(--border);color:var(--muted);font-family:'Share Tech Mono';font-size:10px;padding:3px 7px;cursor:pointer;border-radius:3px;transition:all .15s;}
-.sb:hover,.sb.on{border-color:var(--accent);color:var(--accent);}
+#rb-blk{background:linear-gradient(135deg,#1a0a2e,#2a1050);border:1px solid var(--purple);border-radius:6px;padding:5px 11px;}
+#rb-blk .slbl{color:#c084fc;}#rb-blk .sval{color:#e879f9;}
+#era-d{font-family:'Orbitron';font-size:10px;color:var(--gold);letter-spacing:2px;margin-left:auto;white-space:nowrap;}
+#hdr-btns{display:flex;gap:5px;}
+.hbtn{background:var(--bg3);border:1px solid var(--border);color:var(--muted);font-family:'Share Tech Mono';font-size:12px;padding:5px 10px;cursor:pointer;border-radius:4px;transition:all .15s;}
+.hbtn:hover,.hbtn.on{border-color:var(--accent);color:var(--accent);}
+.hbtn.save-btn{border-color:#00ff9d44;color:var(--accent2);}
+.hbtn.save-btn:hover{border-color:var(--accent2);background:#00ff9d10;}
+.hbtn.newtab-btn{border-color:#a855f744;color:var(--purple);}
+.hbtn.newtab-btn:hover{border-color:var(--purple);background:#a855f710;}
 
-/* LAYOUT */
+/* ── FUEL BARS (depletion) ── */
+#fuel-bars{display:flex;gap:8px;align-items:center;padding:0 8px;}
+.fbar-wrap{display:flex;flex-direction:column;gap:2px;min-width:72px;}
+.fbar-lbl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+.fbar-track{height:6px;background:#0a1628;border-radius:3px;border:1px solid var(--border);overflow:hidden;}
+.fbar-fill{height:100%;border-radius:3px;transition:width .5s linear;}
+.fbar-pct{font-size:9px;color:var(--muted);}
+
+/* ── LAYOUT ── */
 #main{display:flex;flex:1;overflow:hidden;}
 
-/* LEFT TECH */
-#tp{width:200px;background:var(--panel);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;overflow:hidden;}
-#tp h3,#rp h3{font-family:'Orbitron';font-size:8px;letter-spacing:2px;color:var(--muted);padding:6px 10px;border-bottom:1px solid var(--border);text-transform:uppercase;}
-#tlist{flex:1;overflow-y:auto;padding:4px;}
-#tlist::-webkit-scrollbar{width:3px;}
-#tlist::-webkit-scrollbar-thumb{background:var(--border2);}
-.ti{border:1px solid var(--border);border-radius:4px;padding:5px 7px;margin-bottom:3px;cursor:pointer;transition:border-color .15s,background .15s;background:var(--bg3);}
+/* ── LEFT TECH ── */
+#tp{width:240px;background:var(--panel);border-right:2px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;overflow:hidden;}
+#tp h3,#rp h3{font-family:'Orbitron';font-size:10px;letter-spacing:2px;color:var(--muted);padding:8px 12px;border-bottom:1px solid var(--border);text-transform:uppercase;}
+#tlist{flex:1;overflow-y:auto;padding:6px;}
+#tlist::-webkit-scrollbar{width:4px;}#tlist::-webkit-scrollbar-thumb{background:var(--border2);}
+.ti{border:1px solid var(--border);border-radius:6px;padding:8px 10px;margin-bottom:4px;cursor:pointer;transition:border-color .15s,background .15s;background:var(--bg3);}
 .ti:hover:not(.lk){border-color:var(--border2);}
 .ti.sel{border-color:var(--accent);background:#0a1f35;}
 .ti.lk{opacity:.28;cursor:not-allowed;}
-.tn{font-size:10px;color:var(--white);font-weight:bold;}
-.tm{font-size:7px;color:var(--muted);margin-top:1px;}
-.tc{font-size:7px;color:var(--gold);margin-top:1px;}
-.tu{font-size:7px;color:#ff8844;margin-top:1px;}
-.th{font-size:7px;color:var(--orange);letter-spacing:2px;text-transform:uppercase;padding:5px 2px 2px;border-top:1px solid var(--border);margin-top:3px;}
+.ti.depleted{opacity:.5;border-color:#ff440040;}
+.tn{font-size:12px;color:var(--white);font-weight:bold;}
+.tm{font-size:10px;color:var(--muted);margin-top:2px;}
+.tc{font-size:10px;color:var(--gold);margin-top:2px;}
+.tu{font-size:9px;color:#ff8844;margin-top:2px;}
+.th{font-size:9px;color:var(--orange);letter-spacing:2px;text-transform:uppercase;padding:6px 3px 3px;border-top:1px solid var(--border);margin-top:4px;}
 .th:first-child{border-top:none;margin-top:0;}
-.th.exotic{color:#e879f9;}
-.th.omega-hdr{color:#ff0;animation:omgpulse 1s ease-in-out infinite;}
-@keyframes omgpulse{0%,100%{color:#ff0;text-shadow:0 0 6px #ff0;}50%{color:#fff;text-shadow:0 0 12px #fff;}}
+.th.exotic{color:#e879f9;}.th.omega-hdr{color:#ff0;animation:omgp 1s ease-in-out infinite;}
+@keyframes omgp{0%,100%{color:#ff0;text-shadow:0 0 6px #ff0;}50%{color:#fff;text-shadow:0 0 14px #fff;}}
 
-/* GRID */
+/* ── GRID ── */
 #ga{flex:1;display:flex;flex-direction:column;overflow:hidden;position:relative;}
 #gw{flex:1;overflow:auto;position:relative;}
-#gw::-webkit-scrollbar{width:5px;height:5px;}
-#gw::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
+#gw::-webkit-scrollbar{width:6px;height:6px;}#gw::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px;}
 #pc{position:absolute;top:0;left:0;pointer-events:none;z-index:10;}
-#grid{display:grid;gap:2px;padding:14px;width:max-content;position:relative;z-index:1;}
-.cell{width:var(--cell);height:var(--cell);border:1px solid #0f2040;background:#050d18;border-radius:3px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .15s,background .15s;position:relative;flex-direction:column;gap:1px;}
+#grid{display:grid;gap:3px;padding:16px;width:max-content;position:relative;z-index:1;}
+.cell{width:var(--cell);height:var(--cell);border:1px solid #0f2040;background:#050d18;border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .15s,background .15s;position:relative;flex-direction:column;gap:2px;overflow:visible;}
 .cell:hover:not(.occ){border-color:var(--border2);background:#0a1628;}
-.ci{font-size:20px;line-height:1;}
-.cn{font-size:6px;color:var(--muted);text-align:center;max-width:66px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
-.co{font-size:6px;color:var(--accent2);}
+.ci{font-size:26px;line-height:1;}
+.cn{font-size:8px;color:var(--muted);text-align:center;max-width:82px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+.co{font-size:8px;color:var(--accent2);}
+.cdep{font-size:8px;color:var(--red);}
+/* depletion overlay bar */
+.dep-bar{position:absolute;bottom:0;left:0;height:4px;background:var(--red);border-radius:0 0 6px 6px;transition:width .5s linear;}
 
 /* CELL GLOWS */
 .gc{box-shadow:0 0 8px #ff440028;border-color:#553300;}
@@ -85,277 +92,371 @@ body.shake{animation:shake .4s ease-out;}
 .gdy{box-shadow:0 0 18px #ff990055;border-color:#885500;}
 .gdpe{box-shadow:0 0 22px #00ffff60,0 0 44px #00ffff20;border-color:#006688;animation:dp 1.5s ease-in-out infinite;}
 .gdcs{box-shadow:0 0 26px #ff990060,0 0 52px #ff990020;border-color:#996600;animation:dp 1s ease-in-out infinite;}
-.gmp{box-shadow:0 0 30px #ff00ff60,0 0 60px #ff00ff28,0 0 90px #ff00ff10;border-color:#990066;animation:mp .7s ease-in-out infinite;}
-/* NEW EXOTIC GLOWS */
-.gpulsar{box-shadow:0 0 20px #ffffff70,0 0 40px #88aaff40;border-color:#aabbff;animation:pulsarblink .3s ease-in-out infinite;}
-@keyframes pulsarblink{0%,100%{opacity:1;}50%{opacity:.6;}}
+.gmp{box-shadow:0 0 30px #ff00ff60,0 0 60px #ff00ff28;border-color:#990066;animation:mp .7s ease-in-out infinite;}
+.gpulsar{box-shadow:0 0 20px #fff8,0 0 40px #88aaff40;border-color:#aabbff;animation:pblnk .3s ease-in-out infinite;}
 .gquasar{box-shadow:0 0 28px #ff440080,0 0 56px #ff880040;border-color:#ff6600;animation:dp .5s ease-in-out infinite;}
 .gnmerge{box-shadow:0 0 24px #66ffff70,0 0 48px #ff66ff40;border-color:#88ffee;animation:mp .4s ease-in-out infinite;}
-.gzpt{box-shadow:0 0 20px #ffffff50,0 0 40px #aaaaff30;border-color:#ccccff;animation:zptanim 2s ease-in-out infinite;}
-@keyframes zptanim{0%,100%{box-shadow:0 0 20px #ffffff50,0 0 40px #aaaaff30;}50%{box-shadow:0 0 30px #ffffffa0,0 0 60px #aaaaff60;}}
-.gvac{box-shadow:0 0 22px #ffaa0060,0 0 44px #ff550030;border-color:#ffaa00;animation:bl .8s ease-in-out infinite;}
-.gcstr{box-shadow:0 0 26px #00ffaa70,0 0 52px #00ff5530;border-color:#00ffaa;animation:dp .6s ease-in-out infinite;}
-.gbrane{box-shadow:0 0 30px #ff00aa70,0 0 60px #aa00ff40,0 0 90px #0000ff20;border-color:#ff00aa;animation:braneflicker .4s ease-in-out infinite;}
-@keyframes braneflicker{0%,100%{opacity:1;transform:scale(1);}33%{opacity:.8;transform:scale(1.01);}66%{opacity:.9;transform:scale(.99);}}
-/* KARDASHEV */
-.gkd1{box-shadow:0 0 20px #00ff8870,0 0 40px #00ff4430;border-color:#00ff88;}
-.gkd2{box-shadow:0 0 24px #ffcc0070,0 0 48px #ff880030;border-color:#ffcc00;}
+.gzpt{box-shadow:0 0 20px #fff5,0 0 40px #aaaaff30;border-color:#ccccff;animation:zpa 2s ease-in-out infinite;}
+.gvac{box-shadow:0 0 22px #ffaa0060;border-color:#ffaa00;animation:bl .8s ease-in-out infinite;}
+.gcstr{box-shadow:0 0 26px #00ffaa70;border-color:#00ffaa;animation:dp .6s ease-in-out infinite;}
+.gbrane{box-shadow:0 0 30px #ff00aa70,0 0 60px #aa00ff40;border-color:#ff00aa;animation:brf .4s ease-in-out infinite;}
+.gkd1{box-shadow:0 0 20px #00ff8870;border-color:#00ff88;}
+.gkd2{box-shadow:0 0 24px #ffcc0070;border-color:#ffcc00;}
 .gkd3{box-shadow:0 0 28px #ff44ff70,0 0 56px #aa00ff30;border-color:#ff44ff;animation:dp .8s ease-in-out infinite;}
-.gkd4{box-shadow:0 0 32px #00ccff80,0 0 64px #aa00ff40,0 0 128px #ff000020;border-color:#00ccff;animation:kd4anim 1s ease-in-out infinite;}
-@keyframes kd4anim{0%,100%{box-shadow:0 0 32px #00ccff80,0 0 64px #aa00ff40;}50%{box-shadow:0 0 48px #00ccffb0,0 0 96px #aa00ff60,0 0 192px #ff000030;}}
-/* OMEGA */
-.gomega{border-color:#fff;animation:omegaanim .5s ease-in-out infinite;}
-@keyframes omegaanim{
-  0%{box-shadow:0 0 40px #ffff0090,0 0 80px #ff880060,0 0 120px #ff000040;border-color:#ffff00;}
-  25%{box-shadow:0 0 40px #00ffff90,0 0 80px #0088ff60,0 0 120px #aa00ff40;border-color:#00ffff;}
-  50%{box-shadow:0 0 40px #ff00ff90,0 0 80px #aa0088ff,0 0 120px #ffffff40;border-color:#ff00ff;}
-  75%{box-shadow:0 0 40px #ffffff90,0 0 80px #ffff0060,0 0 120px #00ffff40;border-color:#ffffff;}
-  100%{box-shadow:0 0 40px #ffff0090,0 0 80px #ff880060,0 0 120px #ff000040;border-color:#ffff00;}
-}
+.gkd4{box-shadow:0 0 32px #00ccff80,0 0 64px #aa00ff40;border-color:#00ccff;animation:kd4a 1s ease-in-out infinite;}
+.gomega{border-color:#fff;animation:omga .5s ease-in-out infinite;}
+.gdead{box-shadow:none!important;border-color:#333!important;animation:none!important;opacity:.4;}
 @keyframes bl{0%,100%{opacity:1;}50%{opacity:.65;}}
 @keyframes dp{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.85;transform:scale(1.02);}}
 @keyframes mp{0%,100%{opacity:1;}50%{opacity:.72;}}
+@keyframes pblnk{0%,100%{opacity:1;}50%{opacity:.5;}}
+@keyframes zpa{0%,100%{box-shadow:0 0 20px #fff5;}50%{box-shadow:0 0 30px #fffa;}}
+@keyframes brf{0%,100%{opacity:1;transform:scale(1);}33%{opacity:.8;transform:scale(1.01);}66%{opacity:.9;transform:scale(.99);}}
+@keyframes kd4a{0%,100%{box-shadow:0 0 32px #00ccff80;}50%{box-shadow:0 0 48px #00ccffb0,0 0 96px #aa00ff60;}}
+@keyframes omga{0%{box-shadow:0 0 40px #ffff0090,0 0 80px #ff880060;border-color:#ffff00;}25%{box-shadow:0 0 40px #00ffff90,0 0 80px #0088ff60;border-color:#00ffff;}50%{box-shadow:0 0 40px #ff00ff90;border-color:#ff00ff;}75%{box-shadow:0 0 40px #fff9;border-color:#fff;}100%{box-shadow:0 0 40px #ffff0090;border-color:#ffff00;}}
 
-/* BOTTOM BAR */
-#bb{background:var(--panel);border-top:1px solid var(--border);padding:5px 10px;display:flex;gap:8px;align-items:center;flex-shrink:0;min-height:40px;}
-#it{font-size:9px;color:var(--muted);flex:1;line-height:1.5;}
-#it span{color:var(--text);}
-#dbtn{background:transparent;color:var(--red);border:1px solid var(--red);font-family:'Orbitron';font-size:8px;padding:5px 10px;border-radius:4px;cursor:pointer;transition:all .15s;text-transform:uppercase;}
-#dbtn:hover{background:#ff444415;}
-#dbtn.on{background:var(--red);color:#fff;}
-#plbtn{background:var(--accent);color:var(--bg);font-family:'Orbitron';font-size:8px;font-weight:700;padding:5px 14px;border:none;border-radius:4px;cursor:pointer;transition:all .15s;text-transform:uppercase;}
-#plbtn:hover{background:#00aadd;}
-#plbtn:disabled{background:var(--border);color:var(--muted);cursor:not-allowed;}
+/* ── BOTTOM BAR ── */
+#bb2{background:var(--panel);border-top:2px solid var(--border);padding:8px 14px;display:flex;gap:10px;align-items:center;flex-shrink:0;min-height:52px;}
+#it{font-size:12px;color:var(--muted);flex:1;line-height:1.6;}#it span{color:var(--text);}
+#dbtn{background:transparent;color:var(--red);border:1px solid var(--red);font-family:'Orbitron';font-size:10px;padding:7px 14px;border-radius:5px;cursor:pointer;transition:all .15s;text-transform:uppercase;}
+#dbtn:hover{background:#ff444415;}#dbtn.on{background:var(--red);color:#fff;}
+#plbtn{background:var(--accent);color:var(--bg);font-family:'Orbitron';font-size:10px;font-weight:700;padding:7px 18px;border:none;border-radius:5px;cursor:pointer;transition:all .15s;text-transform:uppercase;}
+#plbtn:hover{background:#00aadd;}#plbtn:disabled{background:var(--border);color:var(--muted);cursor:not-allowed;}
 
-/* RIGHT RESEARCH */
-#rp{width:210px;background:var(--panel);border-left:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;}
-#rpanel{flex:1;overflow-y:auto;padding:4px;}
-#rpanel::-webkit-scrollbar{width:3px;}
-#rpanel::-webkit-scrollbar-thumb{background:var(--border2);}
-.rcat{font-size:7px;color:var(--purple);letter-spacing:2px;text-transform:uppercase;padding:5px 2px 2px;border-top:1px solid var(--border);margin-top:3px;}
+/* ── RIGHT RESEARCH ── */
+#rp{width:260px;background:var(--panel);border-left:2px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;}
+#rpanel{flex:1;overflow-y:auto;padding:6px;}
+#rpanel::-webkit-scrollbar{width:4px;}#rpanel::-webkit-scrollbar-thumb{background:var(--border2);}
+.rcat{font-size:9px;color:var(--purple);letter-spacing:2px;text-transform:uppercase;padding:6px 3px 3px;border-top:1px solid var(--border);margin-top:3px;}
 .rcat:first-child{border-top:none;margin-top:0;}
-.ui{border:1px solid var(--border);border-radius:4px;padding:5px 7px;margin-bottom:3px;background:var(--bg3);cursor:pointer;transition:border-color .15s;}
+.ui{border:1px solid var(--border);border-radius:6px;padding:8px 10px;margin-bottom:4px;background:var(--bg3);cursor:pointer;transition:border-color .15s;}
 .ui:hover:not(.bought){border-color:var(--purple);}
-.ui.bought{opacity:.38;cursor:default;}
-.ui.omega-res{border-color:#ff000040;background:#1a0a00;}
-.ui.omega-res:hover:not(.bought){border-color:#ff4400;}
-.ui.rebirth-res{border-color:#88008840;background:#0a0015;}
+.ui.bought{opacity:.36;cursor:default;}
+.ui.ai-res{border-color:#00ff9d30;background:#001a0a;}
+.ui.ai-res:hover:not(.bought){border-color:var(--accent2);}
+.ui.omega-res{border-color:#ff000030;background:#1a0500;}
+.ui.rebirth-res{border-color:#88008830;background:#0a0015;}
 .ui.rebirth-res:hover:not(.bought){border-color:#e879f9;}
-.un{font-size:9px;color:var(--white);}
-.ud{font-size:7px;color:var(--muted);margin-top:2px;line-height:1.4;}
-.uc{font-size:7px;color:var(--purple);margin-top:2px;}
+.un{font-size:11px;color:var(--white);}
+.ud{font-size:9px;color:var(--muted);margin-top:3px;line-height:1.5;}
+.uc{font-size:9px;color:var(--purple);margin-top:3px;}
+.ai-badge{font-size:8px;color:var(--accent2);margin-bottom:2px;letter-spacing:1px;}
 
-/* NOTIF */
-#notif{position:fixed;top:52px;right:14px;background:var(--bg3);border:1px solid var(--accent);border-radius:6px;padding:7px 13px;font-size:9px;color:var(--accent);max-width:240px;opacity:0;transform:translateY(-8px);transition:all .3s;pointer-events:none;z-index:300;font-family:'Orbitron';letter-spacing:1px;}
+/* ── AI THINKING ── */
+#ai-thinking{position:fixed;bottom:62px;left:50%;transform:translateX(-50%);background:var(--bg3);border:1px solid var(--accent2);border-radius:6px;padding:8px 20px;font-size:11px;color:var(--accent2);font-family:'Orbitron';letter-spacing:2px;opacity:0;pointer-events:none;transition:opacity .3s;z-index:200;}
+#ai-thinking.on{opacity:1;}
+
+/* ── NOTIFICATIONS ── */
+#notif{position:fixed;top:60px;right:16px;background:var(--bg3);border:1px solid var(--accent);border-radius:8px;padding:10px 16px;font-size:11px;color:var(--accent);max-width:280px;opacity:0;transform:translateY(-8px);transition:all .3s;pointer-events:none;z-index:300;font-family:'Orbitron';letter-spacing:1px;}
 #notif.on{opacity:1;transform:translateY(0);}
-
-/* EVENT BANNER */
-#event-banner{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.9);background:var(--panel);border:2px solid var(--orange);border-radius:10px;padding:24px 40px;text-align:center;max-width:420px;z-index:350;opacity:0;pointer-events:none;transition:all .4s;}
-#event-banner.on{opacity:1;transform:translate(-50%,-50%) scale(1);pointer-events:all;}
-#eb-title{font-family:'Orbitron';font-size:16px;color:var(--orange);margin-bottom:8px;}
-#eb-desc{font-size:11px;color:var(--text);line-height:1.7;margin-bottom:14px;}
-#eb-effect{font-size:10px;color:var(--accent2);margin-bottom:14px;}
-#eb-close{background:var(--orange);color:#000;font-family:'Orbitron';font-size:10px;font-weight:700;padding:7px 22px;border:none;border-radius:4px;cursor:pointer;}
-
-/* ERA / MILESTONE OVERLAY */
-#eo{position:fixed;inset:0;background:rgba(0,0,0,.9);display:flex;align-items:center;justify-content:center;z-index:400;opacity:0;pointer-events:none;transition:opacity .5s;}
-#eo.on{opacity:1;pointer-events:all;}
-#ec{background:var(--panel);border:2px solid var(--accent);border-radius:12px;padding:32px 48px;text-align:center;max-width:520px;}
-#ec.rebirth-card{border-color:#e879f9;background:linear-gradient(135deg,#0a0015,#1a0a2e);}
-#ec h2{font-family:'Orbitron';font-size:20px;color:var(--accent);margin-bottom:10px;}
-#ec.rebirth-card h2{color:#e879f9;}
-#ec p{color:var(--text);font-size:11px;line-height:1.8;margin-bottom:16px;}
-#ec-close{background:var(--accent);color:var(--bg);font-family:'Orbitron';font-size:10px;font-weight:700;padding:8px 24px;border:none;border-radius:4px;cursor:pointer;letter-spacing:2px;margin:4px;}
-#ec-rebirth{background:linear-gradient(135deg,#9900cc,#ff0088);color:#fff;font-family:'Orbitron';font-size:10px;font-weight:700;padding:8px 24px;border:none;border-radius:4px;cursor:pointer;letter-spacing:2px;margin:4px;display:none;}
-#ec-rebirth:hover{filter:brightness(1.2);}
-
-/* BIG BANG OVERLAY */
-#bbang{position:fixed;inset:0;background:#000;z-index:500;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .5s;}
-#bbang.on{opacity:1;pointer-events:all;}
-#bbang canvas{position:absolute;inset:0;}
-#bbang-text{position:relative;z-index:1;text-align:center;font-family:'Orbitron';}
-#bbang-text h1{font-size:32px;color:#fff;margin-bottom:12px;text-shadow:0 0 20px #fff;}
-#bbang-text p{font-size:13px;color:#adf;line-height:1.8;}
-
-/* ACHIEVEMENTS */
-#ach-toast{position:fixed;bottom:60px;right:14px;background:#1a1000;border:1px solid var(--gold);border-radius:6px;padding:8px 14px;font-size:9px;color:var(--gold);max-width:220px;opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:none;z-index:300;font-family:'Orbitron';}
+#ach-toast{position:fixed;bottom:62px;right:16px;background:#1a1000;border:1px solid var(--gold);border-radius:8px;padding:10px 14px;font-size:11px;color:var(--gold);max-width:260px;opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:none;z-index:300;font-family:'Orbitron';}
 #ach-toast.on{opacity:1;transform:translateY(0);}
 
-/* REBIRTH GLOW THEME */
-body.rebirth1{--border2:#4a2870;}
-body.rebirth2{--border2:#2a4870;--accent:#00ffaa;}
-body.rebirth3{--border2:#702a4a;--accent:#ff88ff;}
+/* ── EVENT PANEL ── */
+#evpanel{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.92);background:var(--panel);border:2px solid var(--orange);border-radius:12px;padding:28px 44px;text-align:center;max-width:480px;width:90%;z-index:350;opacity:0;pointer-events:none;transition:all .35s;}
+#evpanel.on{opacity:1;transform:translate(-50%,-50%) scale(1);pointer-events:all;}
+#ev-title{font-family:'Orbitron';font-size:18px;color:var(--orange);margin-bottom:10px;}
+#ev-desc{font-size:13px;color:var(--text);line-height:1.8;margin-bottom:12px;}
+#ev-eff{font-size:12px;color:var(--accent2);margin-bottom:16px;font-family:'Orbitron';}
+.ev-src{font-size:9px;color:var(--muted);margin-bottom:10px;}
+#ev-close{background:var(--orange);color:#000;font-family:'Orbitron';font-size:11px;font-weight:700;padding:9px 24px;border:none;border-radius:5px;cursor:pointer;}
+
+/* ── ERA OVERLAY ── */
+#eo{position:fixed;inset:0;background:rgba(0,0,0,.9);display:flex;align-items:center;justify-content:center;z-index:400;opacity:0;pointer-events:none;transition:opacity .5s;}
+#eo.on{opacity:1;pointer-events:all;}
+#ec{background:var(--panel);border:2px solid var(--accent);border-radius:14px;padding:36px 52px;text-align:center;max-width:580px;width:92%;}
+#ec.rbc{border-color:#e879f9;background:linear-gradient(135deg,#0a0015,#1a0a2e);}
+#ec h2{font-family:'Orbitron';font-size:24px;color:var(--accent);margin-bottom:12px;}
+#ec.rbc h2{color:#e879f9;}
+#ec p{color:var(--text);font-size:13px;line-height:1.9;margin-bottom:20px;}
+.ec-btn{font-family:'Orbitron';font-size:11px;font-weight:700;padding:9px 26px;border:none;border-radius:5px;cursor:pointer;letter-spacing:2px;margin:5px;transition:all .15s;}
+#ec-close{background:var(--accent);color:var(--bg);}
+#ec-rb{background:linear-gradient(135deg,#9900cc,#ff0088);color:#fff;display:none;}
+#ec-rb:hover{filter:brightness(1.2);}
+
+/* ── SAVE SLOT MODAL ── */
+#savemod{position:fixed;inset:0;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;z-index:500;opacity:0;pointer-events:none;transition:opacity .3s;}
+#savemod.on{opacity:1;pointer-events:all;}
+#savecard{background:var(--panel);border:2px solid var(--border2);border-radius:12px;padding:28px 36px;min-width:420px;}
+#savecard h2{font-family:'Orbitron';font-size:16px;color:var(--accent);margin-bottom:16px;letter-spacing:2px;}
+.slot{border:1px solid var(--border);border-radius:8px;padding:12px 16px;margin-bottom:10px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:border-color .15s;}
+.slot:hover{border-color:var(--border2);}
+.slot-ico{font-size:24px;}
+.slot-info{flex:1;}
+.slot-name{font-size:12px;color:var(--white);font-weight:bold;}
+.slot-meta{font-size:10px;color:var(--muted);margin-top:3px;}
+.slot-btns{display:flex;gap:6px;}
+.slot-btn{font-family:'Orbitron';font-size:10px;padding:5px 12px;border:none;border-radius:4px;cursor:pointer;font-weight:700;}
+.slot-save{background:var(--accent2);color:#000;}
+.slot-load{background:var(--accent);color:#000;}
+.slot-del{background:var(--red);color:#fff;}
+#save-close{background:transparent;border:1px solid var(--border2);color:var(--muted);font-family:'Orbitron';font-size:11px;padding:8px 20px;border-radius:5px;cursor:pointer;margin-top:8px;width:100%;}
+#save-close:hover{border-color:var(--accent);color:var(--accent);}
+
+
+/* ── REBIRTH CHOICE MODAL ── */
+#rbchoice-modal{position:fixed;inset:0;background:rgba(0,0,0,.9);display:flex;align-items:center;justify-content:center;z-index:650;opacity:0;pointer-events:none;transition:opacity .3s;}
+#rbchoice-modal.on{opacity:1;pointer-events:all;}
+#rbchoice-card{background:linear-gradient(135deg,#090018,#1a0a2e);border:2px solid #e879f9;border-radius:16px;padding:28px 34px;width:min(920px,94vw);max-height:88vh;overflow-y:auto;box-shadow:0 0 40px #a855f744;}
+#rbchoice-card h2{font-family:'Orbitron';font-size:18px;color:#e879f9;letter-spacing:2px;margin-bottom:8px;text-align:center;}
+#rbchoice-sub{font-size:11px;color:var(--muted);line-height:1.7;text-align:center;margin-bottom:18px;}
+#rbchoice-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;}
+.rbchoice{border:1px solid #a855f755;background:rgba(15,5,35,.92);border-radius:12px;padding:14px;cursor:pointer;transition:all .15s;min-height:145px;}
+.rbchoice:hover{border-color:#e879f9;transform:translateY(-2px);box-shadow:0 0 22px #a855f744;}
+.rbchoice-ico{font-size:26px;margin-bottom:8px;}
+.rbchoice-name{font-family:'Orbitron';font-size:12px;color:var(--white);margin-bottom:7px;letter-spacing:1px;}
+.rbchoice-desc{font-size:10px;color:var(--text);line-height:1.55;margin-bottom:8px;}
+.rbchoice-effect{font-size:10px;color:var(--accent2);font-weight:bold;}
+#rbchoice-cancel{margin-top:16px;width:100%;background:transparent;border:1px solid #a855f766;color:#c084fc;font-family:'Orbitron';font-size:11px;padding:10px;border-radius:6px;cursor:pointer;}
+#rbchoice-cancel:hover{border-color:#e879f9;color:#e879f9;}
+
+/* ── DARK ENERGY BLOCK ── */
+#de-blk{background:linear-gradient(135deg,#0a0020,#1a0a3e);border:1px solid #a855f744;}
+#de-blk .slbl{color:#c084fc;}
+#de-blk .sval{color:#e879f9;}
+
+/* ── INFUSE MODAL ── */
+#infuse-modal{position:fixed;inset:0;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;z-index:550;opacity:0;pointer-events:none;transition:opacity .3s;}
+#infuse-modal.on{opacity:1;pointer-events:all;}
+#infuse-card{background:linear-gradient(135deg,#0a0020,#1a0535);border:2px solid #a855f7;border-radius:14px;padding:30px 44px;text-align:center;max-width:420px;width:90%;}
+#infuse-card h2{font-family:'Orbitron';font-size:16px;color:#e879f9;margin-bottom:6px;}
+#im-icon{font-size:40px;display:block;margin:10px 0;}
+#im-level{font-size:11px;color:#c084fc;margin-bottom:4px;font-family:'Orbitron';}
+#im-cur{font-size:11px;color:var(--muted);margin-bottom:4px;}
+#im-next{font-size:13px;color:#e879f9;font-weight:bold;margin-bottom:4px;font-family:'Orbitron';}
+#im-cost{font-size:13px;color:var(--gold);margin-bottom:4px;}
+#im-de{font-size:10px;color:var(--muted);margin-bottom:16px;}
+#im-btn{background:linear-gradient(135deg,#7700cc,#cc0088);color:#fff;font-family:'Orbitron';font-size:11px;font-weight:700;padding:10px 28px;border:none;border-radius:6px;cursor:pointer;letter-spacing:2px;margin:4px;transition:all .15s;}
+#im-btn:hover{filter:brightness(1.25);}
+#im-close{background:transparent;border:1px solid #a855f744;color:var(--muted);font-family:'Orbitron';font-size:10px;padding:8px 20px;border-radius:5px;cursor:pointer;margin:4px;}
+#im-close:hover{border-color:#a855f7;color:#c084fc;}
+#cbtn{background:transparent;color:#00ff9d;border:1px solid #00ff9d;font-family:'Orbitron';font-size:10px;padding:7px 14px;border-radius:5px;cursor:pointer;transition:all .15s;text-transform:uppercase;}
+#cbtn:hover{background:#00ff9d15;}
+#cbtn.on{background:#00ff9d;color:#000;}
+.cconndot{position:absolute;bottom:3px;right:4px;font-size:8px;color:#00ff9d;background:rgba(0,20,10,0.8);border:1px solid #00ff9d44;border-radius:3px;padding:0 3px;line-height:1.5;}
+.csyn{position:absolute;top:3px;right:4px;font-size:8px;color:#00ff9d;background:rgba(0,20,10,0.85);border:1px solid #00ff9d44;border-radius:3px;padding:1px 4px;line-height:1.4;font-family:'Share Tech Mono';z-index:2;}
+.gdark{box-shadow:0 0 20px #cc00ff80,0 0 40px #8800cc40,0 0 60px #440066;border-color:#cc00ff;animation:darkanim .8s ease-in-out infinite;}
+@keyframes darkanim{0%,100%{box-shadow:0 0 20px #cc00ff80,0 0 40px #8800cc40;border-color:#cc00ff;}50%{box-shadow:0 0 30px #ff00ffb0,0 0 60px #cc00ff60,0 0 90px #8800cc30;border-color:#ff00ff;}}
+#bbang{position:fixed;inset:0;background:#000;z-index:600;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .5s;}
+#bbang.on{opacity:1;pointer-events:all;}
+#bbcanvas{position:absolute;inset:0;}
+#bbt{position:relative;z-index:1;text-align:center;font-family:'Orbitron';}
+#bbt h1{font-size:40px;color:#fff;margin-bottom:16px;text-shadow:0 0 30px #fff;}
+#bbt p{font-size:15px;color:#adf;line-height:2;}
 </style>
 </head>
 <body>
-<div id="header">
+
+<!-- HEADER -->
+<div id="hdr">
   <div id="gtitle">ENERGY ASCENSION</div>
   <div class="sblk"><div class="slbl">Power</div><div class="sval" id="sp">0 W</div><div class="srate">+<b id="rp2">0 W</b>/s</div></div>
   <div class="sblk"><div class="slbl">Energy</div><div class="sval" id="se">0 Wh</div><div class="srate">+<b id="re">0 Wh</b>/s</div></div>
   <div class="sblk"><div class="slbl">Credits</div><div class="sval" id="sc">500 ¢</div><div class="srate">+<b id="rc">0 ¢</b>/s</div></div>
   <div class="sblk"><div class="slbl">Structures</div><div class="sval" id="ss">0</div><div class="srate">Grid: <b id="sg">12×9</b></div></div>
-  <div class="sblk" id="rebirth-blk"><div class="slbl">Rebirths</div><div class="sval" id="srb">0</div><div class="srate">Mult: <b id="smult">×1.00</b></div></div>
-  <div id="era-disp">ERA I: FOSSIL AGE</div>
-  <div id="spd">
-    <button class="sb on" onclick="setSpd(1)" id="s1">1×</button>
-    <button class="sb" onclick="setSpd(3)" id="s3">3×</button>
-    <button class="sb" onclick="setSpd(10)" id="s10">10×</button>
+  <div class="sblk" id="rb-blk"><div class="slbl">Rebirths</div><div class="sval" id="srb">0</div><div class="srate">Mult: <b id="smult">×1.00</b></div></div>
+  <div class="sblk" id="de-blk"><div class="slbl">Dark Energy</div><div class="sval" id="sde">0 DE</div><div class="srate" style="color:#a855f7">Right-click cell to infuse</div></div>
+  <div id="fuel-bars">
+    <div class="fbar-wrap"><div class="fbar-lbl">Coal</div><div class="fbar-track"><div class="fbar-fill" id="fb-coal" style="width:100%;background:#ff6633"></div></div><div class="fbar-pct" id="fp-coal">100%</div></div>
+    <div class="fbar-wrap"><div class="fbar-lbl">Oil</div><div class="fbar-track"><div class="fbar-fill" id="fb-oil" style="width:100%;background:#ffaa33"></div></div><div class="fbar-pct" id="fp-oil">100%</div></div>
+    <div class="fbar-wrap"><div class="fbar-lbl">Gas</div><div class="fbar-track"><div class="fbar-fill" id="fb-gas" style="width:100%;background:#ffee44"></div></div><div class="fbar-pct" id="fp-gas">100%</div></div>
+  </div>
+  <div id="era-d">ERA I: FOSSIL AGE</div>
+  <div id="hdr-btns">
+    <button class="hbtn save-btn" onclick="openSave()">💾 Saves</button>
+    <button class="hbtn newtab-btn" onclick="openNewTab()" title="Open in new tab for fullscreen">⤢ New Tab</button>
+    <button class="hbtn on" onclick="setSpd(1)" id="s1">1×</button>
+    <button class="hbtn" onclick="setSpd(3)" id="s3">3×</button>
+    <button class="hbtn" onclick="setSpd(10)" id="s10">10×</button>
   </div>
 </div>
 
+<!-- MAIN -->
 <div id="main">
   <div id="tp"><h3>Tech Tree</h3><div id="tlist"></div></div>
   <div id="ga">
-    <div id="gw">
-      <canvas id="pc"></canvas>
-      <div id="grid"></div>
-    </div>
-    <div id="bb">
-      <div id="it">Select a technology from the left, then click an empty grid cell to place it.</div>
+    <div id="gw"><canvas id="pc"></canvas><div id="grid"></div></div>
+    <div id="bb2">
+      <div id="it">Select a technology from the left, then click an empty cell to place it.</div>
       <button id="dbtn" onclick="togDem()">⚠ Demolish</button>
+      <button id="cbtn" onclick="toggleConnectMode()">🔗 Connect</button>
       <button id="plbtn" disabled>▶ Place</button>
     </div>
   </div>
   <div id="rp"><h3>Research Lab</h3><div id="rpanel"></div></div>
 </div>
 
+<!-- OVERLAYS -->
+<div id="ai-thinking">⚡ AI THINKING...</div>
 <div id="notif"></div>
 <div id="ach-toast"></div>
 
-<div id="event-banner">
-  <div id="eb-title">EVENT</div>
-  <div id="eb-desc"></div>
-  <div id="eb-effect"></div>
-  <button id="eb-close" onclick="closeEvent()">Acknowledge</button>
+<div id="evpanel">
+  <div id="ev-title">EVENT</div>
+  <div class="ev-src" id="ev-src"></div>
+  <div id="ev-desc"></div>
+  <div id="ev-eff"></div>
+  <button id="ev-close" onclick="closeEv()">Acknowledge</button>
 </div>
 
 <div id="eo">
   <div id="ec">
     <h2 id="et">ERA</h2>
     <p id="ed"></p>
-    <button id="ec-close" onclick="closeEra()">Continue →</button>
-    <button id="ec-rebirth" onclick="doRebirth()">🌌 COLLAPSE &amp; REBIRTH</button>
+    <button class="ec-btn" id="ec-close" onclick="closeEra()">Continue →</button>
+    <button class="ec-btn" id="ec-rb" onclick="openRebirthChoices()">🌌 COLLAPSE &amp; REBIRTH</button>
+  </div>
+</div>
+
+<div id="savemod">
+  <div id="savecard">
+    <h2>💾 SAVE SLOTS</h2>
+    <div id="slot-list"></div>
+    <button id="save-close" onclick="closeSave()">Close</button>
+  </div>
+</div>
+
+<div id="infuse-modal">
+  <div id="infuse-card">
+    <h2>🌑 DARK MATTER INFUSION</h2>
+    <span id="im-icon">⚫</span>
+    <div id="im-level">Infusion Level: 0</div>
+    <div id="im-cur">Not yet infused</div>
+    <div id="im-next">Next: ×5 output</div>
+    <div id="im-cost">Cost: 0 DE</div>
+    <div id="im-de">Your DE: 0 DE</div>
+    <p style="font-size:9px;color:var(--muted);margin-bottom:14px;line-height:1.6">Infusing channels knowledge from collapsed universes into this structure. The first infusion always grants ×5 output. Each subsequent infusion grows stronger.</p>
+    <button id="im-btn">🌑 INFUSE</button>
+    <button id="im-close" onclick="closeInfuse()">Cancel</button>
   </div>
 </div>
 
 <div id="bbang">
   <canvas id="bbcanvas"></canvas>
-  <div id="bbang-text">
-    <h1 id="bb-title">BIG BANG</h1>
-    <p id="bb-sub"></p>
+  <div id="bbt"><h1>BIG BANG</h1><p id="bbt-sub"></p></div>
+</div>
+
+<div id="rbchoice-modal">
+  <div id="rbchoice-card">
+    <h2>🌌 CHOOSE YOUR NEXT UNIVERSE</h2>
+    <p id="rbchoice-sub">
+      The old universe collapses. Five possible constants emerge. Choose one permanent law for the next cycle.
+    </p>
+    <div id="rbchoice-list"></div>
+    <button id="rbchoice-cancel" onclick="closeRebirthChoices()">Cancel</button>
   </div>
 </div>
 
 <script>
-// ═══════════════════════════════════════
-// TECH TREE — 30 structures
-// ═══════════════════════════════════════
+
+// GitHub Pages-safe save storage wrapper.
+// Uses ChatGPT window.storage when available, otherwise falls back to localStorage.
+if(!window.storage){
+  window.storage={
+    async get(key){
+      const value=localStorage.getItem(key);
+      return value===null?null:{key,value};
+    },
+    async set(key,value){localStorage.setItem(key,value);return {key,value};},
+    async delete(key){localStorage.removeItem(key);return true;}
+  };
+}
+// ═══════════════════════════════════════════════════
+// TECH DATA
+// ═══════════════════════════════════════════════════
 const TECHS=[
-  // ERA I — FOSSIL
-  {id:'coal',n:'Coal Plant',ic:'⚫',era:'I',en:'Fossil Age',cost:50,out:1e3,gl:'gc',desc:'Burns coal. The beginning.',unl:0,cr:0.5},
-  {id:'oil',n:'Oil Refinery',ic:'🛢',era:'I',en:'Fossil Age',cost:150,out:5e3,gl:'go',desc:'Petroleum power.',unl:300,cr:1},
-  {id:'gas',n:'Gas Turbine',ic:'🔥',era:'I',en:'Fossil Age',cost:400,out:20e3,gl:'gg',desc:'Natural gas. Cleaner burn.',unl:2000,cr:2},
-  // ERA II — CLEAN
+  {id:'coal',n:'Coal Plant',ic:'⚫',era:'I',en:'Fossil Age',cost:50,out:1e3,gl:'gc',desc:'Burns coal. The beginning.',unl:0,cr:0.5,deplete:'coal'},
+  {id:'oil',n:'Oil Refinery',ic:'🛢',era:'I',en:'Fossil Age',cost:150,out:5e3,gl:'go',desc:'Petroleum power.',unl:300,cr:1,deplete:'oil'},
+  {id:'gas',n:'Gas Turbine',ic:'🔥',era:'I',en:'Fossil Age',cost:400,out:20e3,gl:'gg',desc:'Natural gas. Cleaner burn.',unl:2000,cr:2,deplete:'gas'},
   {id:'wind',n:'Wind Farm',ic:'🌬',era:'II',en:'Clean Transition',cost:600,out:50e3,gl:'gw2',desc:'Kinetic energy from air.',unl:5000,cr:4},
   {id:'hydro',n:'Hydro Dam',ic:'💧',era:'II',en:'Clean Transition',cost:800,out:80e3,gl:'gh',desc:'Flowing water, forever.',unl:8000,cr:5},
   {id:'solar',n:'Solar Array',ic:'☀',era:'II',en:'Clean Transition',cost:1000,out:100e3,gl:'gs',desc:'Photovoltaic. Scalable.',unl:15000,cr:6},
-  // ERA III — ADVANCED
   {id:'geo',n:'Geothermal',ic:'🌋',era:'III',en:'Advanced Energy',cost:3000,out:500e3,gl:'ggeo',desc:"Earth's core is the engine.",unl:100e3,cr:20},
   {id:'nuclear',n:'Nuclear Reactor',ic:'⚛',era:'III',en:'Advanced Energy',cost:8000,out:2e6,gl:'gn',desc:'Fission. Zero emissions.',unl:500e3,cr:60},
   {id:'tidal',n:'Tidal Generator',ic:'🌊',era:'III',en:'Advanced Energy',cost:12000,out:5e6,gl:'gh',desc:'Ocean tidal forces.',unl:2e6,cr:100},
-  // ERA IV — SPACE AGE
   {id:'orbital',n:'Orbital Collector',ic:'🛸',era:'IV',en:'Space Age',cost:50000,out:50e6,gl:'gorb',desc:'Solar above the atmosphere.',unl:20e6,cr:500},
   {id:'fusion',n:'Fusion Reactor',ic:'🌟',era:'IV',en:'Space Age',cost:200000,out:500e6,gl:'gf',desc:'Hydrogen fusion ignited.',unl:200e6,cr:2000},
   {id:'anti',n:'Antimatter Plant',ic:'✨',era:'IV',en:'Space Age',cost:800000,out:5e9,gl:'ganti',desc:'E=mc². Annihilation.',unl:2e9,cr:8000},
-  // ERA V — STELLAR
   {id:'dyson',n:'Dyson Ring',ic:'💫',era:'V',en:'Stellar Engineering',cost:5e6,out:50e9,gl:'gdy',desc:'Partial Dyson structure.',unl:50e9,cr:50000},
   {id:'stellar',n:'Stellar Engine',ic:'🌠',era:'V',en:'Stellar Engineering',cost:20e6,out:500e9,gl:'gdy',desc:'Shkadov thruster.',unl:500e9,cr:300000},
-  // ERA VI — DPE
   {id:'dpe',n:'Dyson-Penrose Engine',ic:'🕳',era:'VI',en:'DPE Era',cost:100e6,out:1e25,gl:'gdpe',desc:'White dwarf + Kerr BH. Symbiotic. Trillions of years.',unl:5e12,cr:1e10},
-  // ERA VII — DCSAL
-  {id:'dcsal',n:'DCSAL',ic:'⚡',era:'VII',en:'Chapter VI',cost:1e9,out:1e28,gl:'gdcs',desc:'Parabolic mirror → ergosphere. Superradiant amplification loop.',unl:1e25,cr:1e13},
-  // ERA VIII — MPSC
-  {id:'mpsc',n:'MPSC',ic:'🌌',era:'VIII',en:'Chapter VII',cost:1e12,out:1e42,gl:'gmp',desc:'Magnetar jets quark matter into ergosphere. Galaxy output. 63 years.',unl:1e28,cr:1e18},
-  // ERA IX — EXOTIC
-  {id:'pulsar',n:'Pulsar Harvester',ic:'💥',era:'IX',en:'Exotic Matter',cost:1e14,out:1e46,gl:'gpulsar',desc:'Harness a millisecond pulsar beam. 10⁴⁶ W per revolution.',unl:1e42,cr:1e22},
-  {id:'quasar',n:'Quasar Tap',ic:'🔴',era:'IX',en:'Exotic Matter',cost:1e15,out:1e47,gl:'gquasar',desc:'Tap the accretion disc of a distant quasar. Raw AGN output.',unl:1e46,cr:1e23},
-  {id:'neutronmerge',n:'Neutron Star Merger',ic:'🌀',era:'IX',en:'Exotic Matter',cost:5e15,out:1e48,gl:'gnmerge',desc:'Trigger and harvest a kilonova. Brief but cataclysmic.',unl:1e47,cr:1e24},
-  {id:'zpt',n:'Zero-Point Extractor',ic:'🔮',era:'X',en:'Vacuum Energy',cost:1e16,out:1e50,gl:'gzpt',desc:'Tap quantum vacuum fluctuations. Energy from nothing.',unl:1e48,cr:1e26},
-  {id:'vacuum',n:'Vacuum Decay Tap',ic:'🌑',era:'X',en:'Vacuum Energy',cost:5e16,out:1e52,gl:'gvac',desc:'Controlled false vacuum decay. Dangerous. Worth it.',unl:1e50,cr:1e28},
-  {id:'cstring',n:'Cosmic String Tap',ic:'〰',era:'X',en:'Vacuum Energy',cost:1e17,out:1e54,gl:'gcstr',desc:'Siphon energy from primordial cosmic string vibrations.',unl:1e52,cr:1e30},
-  {id:'brane',n:'Brane Collision Reactor',ic:'🌐',era:'XI',en:'Brane Physics',cost:5e17,out:1e56,gl:'gbrane',desc:'Induce controlled M-brane collisions. Harvest extra-dimensional energy.',unl:1e54,cr:1e32},
-  // ERA XII — KARDASHEV
-  {id:'kd1',n:'Type I Civilisation',ic:'🌍',era:'XII',en:'Kardashev Scale',cost:1e18,out:1e58,gl:'gkd1',desc:'Full planetary energy harvest. All natural and geological output.',unl:1e56,cr:1e34},
-  {id:'kd2',n:'Type II Civilisation',ic:'⭐',era:'XII',en:'Kardashev Scale',cost:1e20,out:1e60,gl:'gkd2',desc:'Full stellar energy harvest. Complete Dyson sphere around every star.',unl:1e58,cr:1e36},
-  {id:'kd3',n:'Type III Civilisation',ic:'🌌',era:'XII',en:'Kardashev Scale',cost:1e22,out:1e62,gl:'gkd3',desc:'Full galactic energy harvest. 400 billion stars harnessed.',unl:1e60,cr:1e38},
-  {id:'kd4',n:'Type IV Civilisation',ic:'🔵',era:'XII',en:'Kardashev Scale',cost:1e24,out:1e65,gl:'gkd4',desc:'Universal-scale energy. Dark energy, dark matter, all forces bent to will.',unl:1e62,cr:1e41},
-  // ERA Ω — OMEGA
-  {id:'omega',n:'Type Ω Generator',ic:'♾',era:'Ω',en:'Transcendence',cost:1e28,out:1e80,gl:'gomega',desc:'Exceeds the observable universe. Manipulates spacetime itself. The final machine.',unl:1e65,cr:1e50},
+  {id:'dcsal',n:'DCSAL',ic:'⚡',era:'VII',en:'Chapter VI',cost:1e9,out:1e28,gl:'gdcs',desc:'Parabolic mirror → ergosphere. Superradiant amplification.',unl:1e25,cr:1e13},
+  {id:'mpsc',n:'MPSC',ic:'🌌',era:'VIII',en:'Chapter VII',cost:1e12,out:1e42,gl:'gmp',desc:'Magnetar jets quark matter into ergosphere. Galaxy output.',unl:1e28,cr:1e18},
+  {id:'pulsar',n:'Pulsar Harvester',ic:'💥',era:'IX',en:'Exotic Matter',cost:1e14,out:1e46,gl:'gpulsar',desc:'Millisecond pulsar beam harnessed.',unl:1e42,cr:1e22},
+  {id:'quasar',n:'Quasar Tap',ic:'🔴',era:'IX',en:'Exotic Matter',cost:1e15,out:1e47,gl:'gquasar',desc:'AGN accretion disc output tapped.',unl:1e46,cr:1e23},
+  {id:'neutronmerge',n:'Neutron Star Merger',ic:'🌀',era:'IX',en:'Exotic Matter',cost:5e15,out:1e48,gl:'gnmerge',desc:'Triggered kilonova harvested.',unl:1e47,cr:1e24},
+  {id:'zpt',n:'Zero-Point Extractor',ic:'🔮',era:'X',en:'Vacuum Energy',cost:1e16,out:1e50,gl:'gzpt',desc:'Quantum vacuum fluctuations tapped.',unl:1e48,cr:1e26},
+  {id:'vacuum',n:'Vacuum Decay Tap',ic:'🌑',era:'X',en:'Vacuum Energy',cost:5e16,out:1e52,gl:'gvac',desc:'Controlled false vacuum decay.',unl:1e50,cr:1e28},
+  {id:'cstring',n:'Cosmic String Tap',ic:'〰',era:'X',en:'Vacuum Energy',cost:1e17,out:1e54,gl:'gcstr',desc:'Primordial cosmic string vibrations.',unl:1e52,cr:1e30},
+  {id:'brane',n:'Brane Collision Reactor',ic:'🌐',era:'XI',en:'Brane Physics',cost:5e17,out:1e56,gl:'gbrane',desc:'M-brane collisions. Extra-dimensional energy.',unl:1e54,cr:1e32},
+  {id:'kd1',n:'Type I Civilisation',ic:'🌍',era:'XII',en:'Kardashev Scale',cost:1e18,out:1e58,gl:'gkd1',desc:'Full planetary harvest.',unl:1e56,cr:1e34},
+  {id:'kd2',n:'Type II Civilisation',ic:'⭐',era:'XII',en:'Kardashev Scale',cost:1e20,out:1e60,gl:'gkd2',desc:'Full stellar harvest.',unl:1e58,cr:1e36},
+  {id:'kd3',n:'Type III Civilisation',ic:'🌌',era:'XII',en:'Kardashev Scale',cost:1e22,out:1e62,gl:'gkd3',desc:'Galactic harvest. 400B stars.',unl:1e60,cr:1e38},
+  {id:'kd4',n:'Type IV Civilisation',ic:'🔵',era:'XII',en:'Kardashev Scale',cost:1e24,out:1e65,gl:'gkd4',desc:'Universal-scale energy. All forces.',unl:1e62,cr:1e41},
+  {id:'omega',n:'Type Ω Generator',ic:'♾',era:'Ω',en:'Transcendence',cost:1e28,out:1e80,gl:'gomega',desc:'Exceeds the observable universe. Spacetime is the fuel.',unl:1e65,cr:1e50},
 ];
 
-// ═══════════════════════════════════════
-// RESEARCH — 50+ upgrades
-// ═══════════════════════════════════════
-const RES=[
+// ═══════════════════════════════════════════════════
+// STATIC RESEARCH
+// ═══════════════════════════════════════════════════
+const STATIC_RES=[
   {cat:'⚫ Fossil Technology'},
-  {id:'coils',n:'Improved Coils',d:'Better generator windings. Fossil +50%.',cost:800,m:1.5,tg:'fossil',req:100},
-  {id:'carbon',n:'Carbon Scrubbers',d:'Less thermal overhead. Coal & oil +40%.',cost:1500,m:1.4,tg:'dirty',req:800},
-  {id:'turbine',n:'High-Pressure Turbines',d:'Gas turbines hotter. Gas ×2.',cost:3000,m:2.0,tg:'gas',req:4000},
-  {id:'refinery',n:'Fractional Distillation',d:'More from crude. Oil +80%.',cost:2500,m:1.8,tg:'oil',req:2500},
-  {id:'cogen',n:'Cogeneration System',d:'Recapture waste heat. All fossil +30%.',cost:5000,m:1.3,tg:'fossil',req:10000},
+  {id:'coils',n:'Improved Coils',d:'Better windings. Fossil +50%.',cost:800,m:1.5,tg:'fossil',req:100},
+  {id:'carbon',n:'Carbon Scrubbers',d:'Less overhead. Coal & oil +40%.',cost:1500,m:1.4,tg:'dirty',req:800},
+  {id:'turbine',n:'High-Pressure Turbines',d:'Gas ×2.',cost:3000,m:2.0,tg:'gas',req:4000},
+  {id:'refinery',n:'Fractional Distillation',d:'Oil +80%.',cost:2500,m:1.8,tg:'oil',req:2500},
+  {id:'cogen',n:'Cogeneration System',d:'Waste heat recaptured. Fossil +30%.',cost:5000,m:1.3,tg:'fossil',req:10000},
   {cat:'🌱 Renewables'},
-  {id:'blade',n:'Aerodynamic Blades',d:'Swept-area improvements. Wind +60%.',cost:5000,m:1.6,tg:'wind',req:8000},
-  {id:'pvp',n:'Perovskite PV Cells',d:'22%→40% efficiency. Solar ×1.8.',cost:8000,m:1.8,tg:'solar',req:15000},
-  {id:'pumped',n:'Pumped Storage',d:'Buffer hydro surplus. Hydro +70%.',cost:6000,m:1.7,tg:'hydro',req:12000},
-  {id:'scgrid',n:'Superconducting Grid',d:'Zero-loss transmission. All renewables +30%.',cost:15000,m:1.3,tg:'renew',req:50000},
-  {id:'deeptap',n:'Deep Mantle Tap',d:'Drill to the mantle. Geo ×3.',cost:30000,m:3.0,tg:'geo',req:300e3},
+  {id:'blade',n:'Aerodynamic Blades',d:'Wind +60%.',cost:5000,m:1.6,tg:'wind',req:8000},
+  {id:'pvp',n:'Perovskite PV Cells',d:'Solar ×1.8.',cost:8000,m:1.8,tg:'solar',req:15000},
+  {id:'pumped',n:'Pumped Storage',d:'Hydro +70%.',cost:6000,m:1.7,tg:'hydro',req:12000},
+  {id:'scgrid',n:'Superconducting Grid',d:'All renewables +30%.',cost:15000,m:1.3,tg:'renew',req:50000},
+  {id:'deeptap',n:'Deep Mantle Tap',d:'Geo ×3.',cost:30000,m:3.0,tg:'geo',req:300e3},
   {cat:'⚛ Nuclear & Advanced'},
-  {id:'enrich',n:'Fuel Enrichment',d:'Higher-grade fissile material. Nuclear ×2.5.',cost:40000,m:2.5,tg:'nuclear',req:300e3},
-  {id:'breed',n:'Breeder Reactor',d:'More fuel than consumed. Nuclear ×2.',cost:80000,m:2.0,tg:'nuclear',req:1e6},
-  {id:'twave',n:'Wave Resonance Tuning',d:'Match tidal cycles. Tidal ×2.',cost:20000,m:2.0,tg:'tidal',req:800e3},
-  {id:'alleff',n:'Global Efficiency Grid',d:'All structures +40%.',cost:500e3,m:1.4,tg:'all',req:500e6},
+  {id:'enrich',n:'Fuel Enrichment',d:'Nuclear ×2.5.',cost:40000,m:2.5,tg:'nuclear',req:300e3},
+  {id:'breed',n:'Breeder Reactor',d:'Nuclear ×2.',cost:80000,m:2.0,tg:'nuclear',req:1e6},
+  {id:'twave',n:'Wave Resonance Tuning',d:'Tidal ×2.',cost:20000,m:2.0,tg:'tidal',req:800e3},
+  {id:'alleff',n:'Global Efficiency Grid',d:'All +40%.',cost:500e3,m:1.4,tg:'all',req:500e6},
   {cat:'🚀 Space Infrastructure'},
-  {id:'mirr',n:'Orbital Mirror Array',d:'Focus extra sunlight. Orbital ×2.',cost:200e3,m:2.0,tg:'orbital',req:10e6},
-  {id:'muon',n:'Muon Catalyst Fusion',d:'Lower ignition threshold. Fusion ×3.',cost:600e3,m:3.0,tg:'fusion',req:100e6},
-  {id:'penn',n:'Penning Trap Network',d:'Store more antimatter. Antimatter ×4.',cost:2e6,m:4.0,tg:'anti',req:1e9},
-  {id:'ionprop',n:'Ion Propulsion Grid',d:'All space structures +50%.',cost:1e6,m:1.5,tg:'space',req:5e9},
+  {id:'mirr',n:'Orbital Mirror Array',d:'Orbital ×2.',cost:200e3,m:2.0,tg:'orbital',req:10e6},
+  {id:'muon',n:'Muon Catalyst Fusion',d:'Fusion ×3.',cost:600e3,m:3.0,tg:'fusion',req:100e6},
+  {id:'penn',n:'Penning Trap Network',d:'Antimatter ×4.',cost:2e6,m:4.0,tg:'anti',req:1e9},
   {cat:'⭐ Stellar Engineering'},
-  {id:'fullsph',n:'Full Dyson Sphere',d:'Complete the shell. Dyson ×5.',cost:10e6,m:5.0,tg:'dyson',req:10e9},
-  {id:'swarm',n:'Dyson Swarm Protocol',d:'Distributed collectors. Stellar ×2.5.',cost:40e6,m:2.5,tg:'stellar',req:100e9},
-  {id:'civgrid',n:'Civilisation-Scale Grid',d:'All structures ×3.',cost:80e6,m:3.0,tg:'all',req:1e12},
+  {id:'fullsph',n:'Full Dyson Sphere',d:'Dyson ×5.',cost:10e6,m:5.0,tg:'dyson',req:10e9},
+  {id:'swarm',n:'Dyson Swarm Protocol',d:'Stellar ×2.5.',cost:40e6,m:2.5,tg:'stellar',req:100e9},
+  {id:'civgrid',n:'Civilisation-Scale Grid',d:'All ×3.',cost:80e6,m:3.0,tg:'all',req:1e12},
   {cat:'🕳 Black Hole Physics'},
-  {id:'hawk',n:'Hawking Tap',d:'Refine radiation capture. DPE ×5.',cost:500e6,m:5.0,tg:'dpe',req:1e20},
-  {id:'kerr',n:'Kerr Metric Optimisation',d:'Fine-tune ergosphere. DPE ×10.',cost:2e9,m:10.0,tg:'dpe',req:1e23},
-  {id:'entr',n:'Entropy Feedback Loop',d:'Route entropy back in. DPE ×20.',cost:5e9,m:20.0,tg:'dpe',req:1e24},
+  {id:'hawk',n:'Hawking Tap',d:'DPE ×5.',cost:500e6,m:5.0,tg:'dpe',req:1e20},
+  {id:'kerr',n:'Kerr Metric Optimisation',d:'DPE ×10.',cost:2e9,m:10.0,tg:'dpe',req:1e23},
+  {id:'entr',n:'Entropy Feedback Loop',d:'DPE ×20.',cost:5e9,m:20.0,tg:'dpe',req:1e24},
   {cat:'⚡ Superradiance'},
-  {id:'amirr',n:'Adaptive Mirror Geometry',d:'Self-correcting focus. DCSAL ×8.',cost:20e9,m:8.0,tg:'dcsal',req:1e26},
-  {id:'bhbomb',n:'Controlled BH Bomb Cycle',d:'More bounce cycles. DCSAL ×25.',cost:100e9,m:25.0,tg:'dcsal',req:1e27},
+  {id:'amirr',n:'Adaptive Mirror Geometry',d:'DCSAL ×8.',cost:20e9,m:8.0,tg:'dcsal',req:1e26},
+  {id:'bhbomb',n:'Controlled BH Bomb Cycle',d:'DCSAL ×25.',cost:100e9,m:25.0,tg:'dcsal',req:1e27},
   {cat:'🌌 Magnetar Cascade'},
-  {id:'quarkr',n:'Quark-Gluon Injection',d:'Denser fuel stream. MPSC ×50.',cost:500e9,m:50.0,tg:'mpsc',req:1e30},
-  {id:'casc2',n:'Cascade Amplification',d:'Secondary loops. MPSC ×200.',cost:5e12,m:200.0,tg:'mpsc',req:1e35},
+  {id:'quarkr',n:'Quark-Gluon Injection',d:'MPSC ×50.',cost:500e9,m:50.0,tg:'mpsc',req:1e30},
+  {id:'casc2',n:'Cascade Amplification',d:'MPSC ×200.',cost:5e12,m:200.0,tg:'mpsc',req:1e35},
   {cat:'💥 Exotic Harvesting'},
-  {id:'pulsarr',n:'Pulsar Beam Focusing',d:'Focus the beam tighter. Pulsar ×10.',cost:1e15,m:10.0,tg:'pulsar',req:1e44},
-  {id:'quasarr',n:'Quasar Disc Modulation',d:'Reshape disc geometry. Quasar ×15.',cost:5e15,m:15.0,tg:'quasar',req:1e46},
-  {id:'kilonovar',n:'Kilonova Chain Trigger',d:'Trigger merger sequences. Neutron ×20.',cost:1e16,m:20.0,tg:'neutronmerge',req:1e47},
-  {id:'zptr',n:'ZPE Resonance Cavity',d:'Amplify vacuum noise. ZPT ×30.',cost:1e17,m:30.0,tg:'zpt',req:1e49},
-  {id:'vacr',n:'False Vacuum Stabiliser',d:'Prevent runaway decay. Vacuum ×40.',cost:5e17,m:40.0,tg:'vacuum',req:1e51},
-  {id:'cstrr',n:'String Tension Amplifier',d:'Increase string vibration. Cosmic ×50.',cost:1e18,m:50.0,tg:'cstring',req:1e53},
-  {id:'braner',n:'Brane Resonance Tuner',d:'Tune inter-brane frequency. Brane ×100.',cost:1e19,m:100.0,tg:'brane',req:1e55},
+  {id:'pulsarr',n:'Pulsar Beam Focusing',d:'Pulsar ×10.',cost:1e15,m:10.0,tg:'pulsar',req:1e44},
+  {id:'quasarr',n:'Quasar Disc Modulation',d:'Quasar ×15.',cost:5e15,m:15.0,tg:'quasar',req:1e46},
+  {id:'knovr',n:'Kilonova Chain Trigger',d:'Neutron ×20.',cost:1e16,m:20.0,tg:'neutronmerge',req:1e47},
+  {id:'zptr',n:'ZPE Resonance Cavity',d:'ZPT ×30.',cost:1e17,m:30.0,tg:'zpt',req:1e49},
+  {id:'vacr',n:'False Vacuum Stabiliser',d:'Vacuum ×40.',cost:5e17,m:40.0,tg:'vacuum',req:1e51},
+  {id:'cstrr',n:'String Tension Amplifier',d:'Cosmic ×50.',cost:1e18,m:50.0,tg:'cstring',req:1e53},
+  {id:'braner',n:'Brane Resonance Tuner',d:'Brane ×100.',cost:1e19,m:100.0,tg:'brane',req:1e55},
   {cat:'🌍 Kardashev Upgrades'},
-  {id:'kd1r',n:'Planetary Core Tap',d:'Harness the entire core. Type I ×5.',cost:1e20,m:5.0,tg:'kd1',req:1e57},
-  {id:'kd2r',n:'Stellar Nursery Network',d:'Harvest young star formation. Type II ×10.',cost:1e22,m:10.0,tg:'kd2',req:1e59},
-  {id:'kd3r',n:'Galactic Core Siphon',d:'Tap the central black hole. Type III ×20.',cost:1e24,m:20.0,tg:'kd3',req:1e61},
-  {id:'kd4r',n:'Dark Energy Inversion',d:'Reverse dark energy into output. Type IV ×50.',cost:1e26,m:50.0,tg:'kd4',req:1e63},
-  {id:'allomega',n:'Universal Resonance',d:'All structures ×1000.',cost:1e28,m:1000.0,tg:'all',req:1e65},
+  {id:'kd1r',n:'Planetary Core Tap',d:'Type I ×5.',cost:1e20,m:5.0,tg:'kd1',req:1e57},
+  {id:'kd2r',n:'Stellar Nursery Network',d:'Type II ×10.',cost:1e22,m:10.0,tg:'kd2',req:1e59},
+  {id:'kd3r',n:'Galactic Core Siphon',d:'Type III ×20.',cost:1e24,m:20.0,tg:'kd3',req:1e61},
+  {id:'kd4r',n:'Dark Energy Inversion',d:'Type IV ×50.',cost:1e26,m:50.0,tg:'kd4',req:1e63},
+  {id:'allomega',n:'Universal Resonance',d:'All ×1000.',cost:1e28,m:1000.0,tg:'all',req:1e65},
   {cat:'♾ Omega Upgrades'},
-  {id:'omr1',n:'Spacetime Lattice Tap',d:'Energy from spacetime curvature. Omega ×100.',cost:1e30,m:100.0,tg:'omega',req:1e78,cls:'omega-res'},
-  {id:'omr2',n:'Chronon Harvester',d:'Extract energy from time itself. Omega ×1000.',cost:1e35,m:1000.0,tg:'omega',req:1e79,cls:'omega-res'},
-  {id:'omr3',n:'Multiversal Siphon',d:'Tap adjacent universe branches. All ×10000.',cost:1e40,m:10000.0,tg:'all',req:1e80,cls:'omega-res'},
+  {id:'omr1',n:'Spacetime Lattice Tap',d:'Omega ×100.',cost:1e30,m:100.0,tg:'omega',req:1e78,cls:'omega-res'},
+  {id:'omr2',n:'Chronon Harvester',d:'Omega ×1000.',cost:1e35,m:1000.0,tg:'omega',req:1e79,cls:'omega-res'},
+  {id:'omr3',n:'Multiversal Siphon',d:'All ×10000.',cost:1e40,m:10000.0,tg:'all',req:1e80,cls:'omega-res'},
   {cat:'🌌 Singularity Rebirth'},
-  {id:'rb_prep',n:'Singularity Compression',d:'Prepare to collapse all energy into a point. Unlocks Big Bang Rebirth.',cost:1e45,m:1,tg:'none',req:1e80,action:'unlock_rebirth',cls:'rebirth-res'},
+  {id:'rb_prep',n:'Singularity Compression',d:'Condense all energy to a point. Unlocks Big Bang Rebirth.',cost:1e45,m:1,tg:'none',req:1e80,action:'unlock_rebirth',cls:'rebirth-res'},
 ];
 
-// targets
 const TGT={
   fossil:['coal','oil','gas'],dirty:['coal','oil'],gas:['gas'],oil:['oil'],
   wind:['wind'],solar:['solar'],hydro:['hydro'],geo:['geo'],nuclear:['nuclear'],
@@ -368,137 +469,389 @@ const TGT={
   space:['orbital','fusion','anti'],all:null,none:[],
 };
 
-const ERA_M={
-  I:{t:'ERA I — FOSSIL AGE',d:'Coal, oil, and burning. A civilisation ignites.'},
-  II:{t:'ERA II — CLEAN TRANSITION',d:'Solar, wind, and hydro challenge fossil fuels. A pivot begins.'},
-  III:{t:'ERA III — ADVANCED ENERGY',d:'Nuclear fission. Orders of magnitude unlocked.'},
-  IV:{t:'ERA IV — SPACE AGE',d:'Above the atmosphere. Fusion ignites in controlled conditions.'},
-  V:{t:'ERA V — STELLAR ENGINEERING',d:'A star is wrapped. The Dyson ring captures direct stellar output.'},
-  VI:{t:'ERA VI — DYSON-PENROSE ENGINE',d:'White dwarf and Kerr black hole in symbiosis. Runs for trillions of years. 10²⁵ watts.'},
-  VII:{t:'ERA VII — DCSAL',d:'The Dyson sphere becomes a parabolic mirror. Superradiant amplification. More out than in. 10²⁸ watts.'},
-  VIII:{t:'ERA VIII — MPSC',d:'The magnetar replaces the white dwarf. Quark matter jets into the ergosphere. Galaxy-scale output in 63 years.'},
-  IX:{t:'ERA IX — EXOTIC MATTER',d:'Pulsars. Quasars. Neutron star mergers. The universe itself becomes the power plant.'},
-  X:{t:'ERA X — VACUUM ENERGY',d:'Zero-point fields. False vacuum decay. Cosmic strings. Energy extracted from the fabric of spacetime.'},
-  XI:{t:'ERA XI — BRANE PHYSICS',d:'M-theory applied. Brane collisions harvest extra-dimensional energy. The observable universe is no longer the limit.'},
-  XII:{t:'ERA XII — KARDASHEV SCALE',d:'Type I through IV. Planets, stars, galaxies, the universe itself — all harnessed. You are a god.'},
-  'Ω':{t:'ERA Ω — TYPE OMEGA GENERATOR',d:'You have built the machine that exceeds the observable universe. Spacetime itself is your fuel. This is the final machine.\n\nYou may now collapse everything into a singularity and trigger a new Big Bang — reborn with a permanent multiplier and new unlocks.',rebirth:true},
+function fde(d){
+  if(!isFinite(d)||d<=0)return'0 DE';
+  if(d>=1e9)return(d/1e9).toFixed(2)+' G DE';
+  if(d>=1e6)return(d/1e6).toFixed(2)+' M DE';
+  if(d>=1e3)return(d/1e3).toFixed(1)+' k DE';
+  return Math.round(d)+' DE';
+}
+
+// ═══════════════════════════════════════════════════
+// DARK MATTER INFUSION
+// ═══════════════════════════════════════════════════
+// Tier costs (1-indexed era number × base × repeat multiplier)
+const ERA_TIER={I:1,II:2,III:3,IV:4,V:5,VI:6,VII:7,VIII:8,IX:9,X:10,XI:11,XII:12,'Ω':15};
+const DM_NAMES={
+  coal:'Void-Fused Reactor',oil:'Dark Matter Refinery',gas:'Singularity Turbine',
+  wind:'Dark Wind Array',hydro:'Void Current Dam',solar:'Dark-Fused Photovoltaic Array',
+  geo:'Mantle Void Tap',nuclear:'Dark Fission Core',tidal:'Void Tidal Engine',
+  orbital:'Shadow Orbital Ring',fusion:'Dark Plasma Reactor',anti:'Void Annihilation Chamber',
+  dyson:'Dark Dyson Web',stellar:'Void Stellar Engine',
+  dpe:'Dark-Penrose Singularity',dcsal:'Void Superradiant Loop',mpsc:'Dark Magnetar Cascade',
+  pulsar:'Void Pulsar Cannon',quasar:'Dark Quasar Conduit',neutronmerge:'Void Merger Reactor',
+  zpt:'Dark Zero-Point Matrix',vacuum:'Void Decay Engine',cstring:'Dark String Resonator',
+  brane:'Void Brane Collider',kd1:'Dark Type-I Nexus',kd2:'Dark Type-II Nexus',
+  kd3:'Dark Type-III Nexus',kd4:'Dark Type-IV Nexus',omega:'Void Omega Transcendence',
 };
+const DM_ICONS={
+  coal:'🌑',oil:'🌑',gas:'🌑',wind:'🌑',hydro:'🌑',solar:'🌑',
+  geo:'🌑',nuclear:'🌑',tidal:'🌑',orbital:'🌑',fusion:'🌑',anti:'🌑',
+  dyson:'🌑',stellar:'🌑',dpe:'🌑',dcsal:'🌑',mpsc:'🌑',pulsar:'🌑',
+  quasar:'🌑',neutronmerge:'🌑',zpt:'🌑',vacuum:'🌑',cstring:'🌑',
+  brane:'🌑',kd1:'🌑',kd2:'🌑',kd3:'🌑',kd4:'🌑',omega:'🌑',
+};
+const DM_MULT=5; // base ×5, then scales
 
-// ═══════════════════════════════════════
-// RANDOM EVENTS
-// ═══════════════════════════════════════
-const EVENTS=[
-  {t:'Solar Flare Detected',d:'A massive CME hits your grid infrastructure.',e:'Output reduced by 40% for 30 seconds.',eff:'debuff',val:0.6,dur:30},
-  {t:'Grid Breakthrough',d:'Your engineers discover a resonance harmonic in the power grid.',e:'Output ×3 for 20 seconds.',eff:'buff',val:3,dur:20},
-  {t:'Exotic Matter Discovery',d:'Sensors detect an unusual concentration of exotic matter nearby.',e:'Free credits: 10% of current total.',eff:'credits',val:0.1},
-  {t:'Rogue AI Detected',d:'An autonomous system has infiltrated your grid management software.',e:'Credit generation halved for 15 seconds.',eff:'crdebuff',val:0.5,dur:15},
-  {t:'Alien Signal Received',d:'A repeating pattern encoded in a pulsar signal. Decoded: it\'s a schematic.',e:'Random structure upgraded ×2 permanently.',eff:'permupgrade'},
-  {t:'Cosmic Anomaly',d:'A region of spacetime near your installation exhibits unusual curvature.',e:'All output ×5 for 10 seconds.',eff:'buff',val:5,dur:10},
-  {t:'Fuel Vein Discovered',d:'Massive deposits of fissile material found beneath the surface.',e:'Free credits: 25% of current total.',eff:'credits',val:0.25},
-  {t:'Hawking Radiation Spike',d:'Your black hole systems emit an unexpected burst.',e:'Output ×10 for 5 seconds.',eff:'buff',val:10,dur:5},
-  {t:'Dimensional Rift',d:'A brief opening to an adjacent brane leaks exotic energy.',e:'Free credits equal to 1 minute of production.',eff:'minute_credits'},
-  {t:'Magnetic Storm',d:'A magnetar storm disrupts all electromagnetic systems.',e:'Output reduced by 60% for 20 seconds.',eff:'debuff',val:0.4,dur:20},
-  {t:'Quantum Fluctuation',d:'A vacuum energy fluctuation seeds your zero-point extractors.',e:'ZPE and vacuum structures ×10 for 15 seconds.',eff:'buff',val:10,dur:15},
-  {t:'Civilisation Upgrade',d:'A breakthrough in social organisation maximises energy efficiency.',e:'All credit generation ×3 for 30 seconds.',eff:'crbuff',val:3,dur:30},
-];
+function infusionCost(techId,currentCount){
+  const t=TECHS.find(t=>t.id===techId);
+  if(!t)return 999;
+  const tier=ERA_TIER[t.era]||1;
+  const base=Math.max(1, tier*2);
+  return Math.round(base * Math.pow(2.5, currentCount));
+}
 
-// ═══════════════════════════════════════
-// ACHIEVEMENTS
-// ═══════════════════════════════════════
-const ACHIEVEMENTS=[
-  {id:'a_first',n:'First Light',d:'Place your first structure.',check:g=>Object.keys(g.cells).length>=1},
-  {id:'a_ten',n:'Grid Operator',d:'Place 10 structures.',check:g=>Object.keys(g.cells).length>=10},
-  {id:'a_kw',n:'Kilowatt Club',d:'Reach 1 kW output.',check:g=>g.currentPower>=1e3},
-  {id:'a_mw',n:'Megawatt Club',d:'Reach 1 MW output.',check:g=>g.currentPower>=1e6},
-  {id:'a_gw',n:'Gigawatt Club',d:'Reach 1 GW output.',check:g=>g.currentPower>=1e9},
-  {id:'a_dpe',n:'Black Hole Engineer',d:'Build your first DPE.',check:g=>Object.values(g.cells).some(c=>c.id==='dpe')},
-  {id:'a_mpsc',n:'Magnetar Whisperer',d:'Build your first MPSC.',check:g=>Object.values(g.cells).some(c=>c.id==='mpsc')},
-  {id:'a_omega',n:'Type Ω Achieved',d:'Build the Type Omega Generator.',check:g=>Object.values(g.cells).some(c=>c.id==='omega')},
-  {id:'a_rebirth',n:'Big Bang',d:'Trigger your first Rebirth.',check:g=>g.rebirths>=1},
-  {id:'a_rebirth5',n:'Multiverse Engineer',d:'Rebirth 5 times.',check:g=>g.rebirths>=5},
-  {id:'a_event',n:'Chaos Welcomed',d:'Survive a negative random event.',check:g=>g.negEventsSurvived>=1},
-  {id:'a_credits_m',n:'Millionaire',d:'Accumulate 1M credits.',check:g=>g.credits>=1e6},
-];
+function infusionMult(currentCount){
+  // first infusion ×5, second ×8, third ×13...
+  return Math.round(DM_MULT * Math.pow(1.6, currentCount));
+}
 
-// ═══════════════════════════════════════
+function infuseCell(k){
+  if(!G.cells[k])return;
+  const tech=TECHS.find(t=>t.id===G.cells[k].id);
+  if(!tech)return;
+  const count=G.infusions[k]?G.infusions[k].count:0;
+  const cost=infusionCost(tech.id,count);
+  if(G.darkEnergy<cost){ntf(`Need ${fde(cost)} to infuse!`,'purple');return;}
+  G.darkEnergy-=cost;
+  const newCount=count+1;
+  const mult=infusionMult(newCount-1);
+  G.infusions[k]={count:newCount,name:DM_NAMES[tech.id]||`Dark ${tech.n}`,mult};
+  renderCell(k);recalc();updateStats();
+  burst(k,tech,false,true); // dark burst
+  ntf(`🌑 Infused: ${G.infusions[k].name} ×${mult}`,'purple');
+  shakeScreen();
+  checkAchievements();
+}
+
+// ═══════════════════════════════════════════════════
+// CONNECTION TOOL
+// ═══════════════════════════════════════════════════
+const CONNECTION_BASE_COST=500; // credits per cell of distance
+
+function cellDist(kA,kB){
+  const[rA,cA]=kA.split(',').map(Number);
+  const[rB,cB]=kB.split(',').map(Number);
+  return Math.max(Math.abs(rA-rB),Math.abs(cA-cB)); // Chebyshev distance
+}
+
+function connectionCost(kA,kB){
+  const dist=cellDist(kA,kB);
+  // Scale cost by tier of the higher-era structure
+  const tA=TECHS.find(t=>t.id===G.cells[kA]?.id);
+  const tB=TECHS.find(t=>t.id===G.cells[kB]?.id);
+  const tierA=ERA_TIER[tA?.era]||1;
+  const tierB=ERA_TIER[tB?.era]||1;
+  const tier=Math.max(tierA,tierB);
+  return Math.round(CONNECTION_BASE_COST * dist * tier * (1+G.connections.length*0.1));
+}
+
+function toggleConnectMode(){
+  G.connectMode=!G.connectMode;
+  G.connectFrom=null;
+  G.demMode=false;
+  G.selTech=null;
+  document.getElementById('plbtn').disabled=true;
+  document.querySelectorAll('.ti').forEach(e=>e.classList.remove('sel'));
+  document.getElementById('dbtn').classList.remove('on');
+  document.getElementById('cbtn').classList.toggle('on',G.connectMode);
+  document.getElementById('it').innerHTML=G.connectMode
+    ?'<span style="color:#00ff9d">CONNECT MODE</span> — Click a structure, then click another within 2 cells to link them. Right-click a beam to remove it.'
+    :'Select a technology, then click an empty cell to place it.';
+  reRender();
+}
+
+function localSynergy(tA,tB){
+  const ids=[tA?.id,tB?.id].filter(Boolean);
+  const has=id=>ids.includes(id);
+  const hasAny=arr=>arr.some(id=>ids.includes(id));
+
+  if(has('dpe')&&hasAny(['dcsal','mpsc','omega']))return{label:'Singularity Cascade',bonus:5.0};
+  if(has('dcsal')&&has('mpsc'))return{label:'Superradiant Magnetar Loop',bonus:4.5};
+  if(has('omega')&&hasAny(['kd4','brane','vacuum','zpt']))return{label:'Spacetime Overdrive',bonus:5.0};
+  if(has('dyson')&&has('anti'))return{label:'Stellar Antimatter Forge',bonus:3.5};
+  if(has('dyson')&&hasAny(['solar','orbital','stellar']))return{label:'Stellar Collection Web',bonus:2.5};
+  if(has('stellar')&&hasAny(['dyson','fusion','orbital']))return{label:'Star Engine Coupling',bonus:2.2};
+  if(has('fusion')&&has('anti'))return{label:'Plasma Containment Loop',bonus:2.0};
+  if(has('orbital')&&hasAny(['solar','dyson','stellar']))return{label:'Orbital Mirror Feed',bonus:1.5};
+  if(has('nuclear')&&has('fusion'))return{label:'Atomic Ignition Chain',bonus:1.2};
+  if(has('geo')&&hasAny(['nuclear','tidal','hydro']))return{label:'Planetary Heat Grid',bonus:0.9};
+  if(has('hydro')&&has('tidal'))return{label:'Oceanic Flow Network',bonus:0.85};
+  if(has('solar')&&has('wind'))return{label:'Renewable Balance Grid',bonus:0.65};
+  if(has('wind')&&has('hydro'))return{label:'Weather Storage Loop',bonus:0.55};
+  if(hasAny(['coal','oil','gas'])&&hasAny(['wind','solar','hydro']))return{label:'Transition Grid',bonus:0.35};
+  if(has('coal')&&hasAny(['dyson','omega','dpe','mpsc']))return{label:'Primitive Mismatch',bonus:0.05};
+
+  const tierA=ERA_TIER[tA?.era]||1;
+  const tierB=ERA_TIER[tB?.era]||1;
+  const gap=Math.abs(tierA-tierB);
+  let label='Energy Link',bonus=0.15;
+  if(gap===0){label='Matched Era Grid';bonus=0.4+Math.min(tierA*0.08,1.2);}
+  else if(gap<=2){label='Cross-Era Coupling';bonus=0.25+Math.min(Math.max(tierA,tierB)*0.05,0.9);}
+  else{label='Inefficient Coupling';bonus=0.12;}
+  return{label,bonus:Math.min(Math.max(bonus,0.05),5.0)};
+}
+
+async function handleConnectClick(k){
+  if(!G.cells[k]){ntf('Click an occupied cell.','red');return;}
+  if(!G.connectFrom){
+    // First click — select source
+    G.connectFrom=k;
+    document.getElementById('it').innerHTML=`<span style="color:#00ff9d">SOURCE SELECTED</span>: ${G.cells[k].id} — now click a second structure within 2 cells.`;
+    reRender();
+    return;
+  }
+  if(G.connectFrom===k){
+    // Clicked same cell — deselect
+    G.connectFrom=null;
+    document.getElementById('it').innerHTML='<span style="color:#00ff9d">CONNECT MODE</span> — Click a structure to start.';
+    reRender();
+    return;
+  }
+  const dist=cellDist(G.connectFrom,k);
+  if(dist>2){
+    ntf('Too far apart! Max distance is 2 cells.','red');
+    G.connectFrom=null;
+    reRender();
+    return;
+  }
+  // Check not already connected
+  const already=G.connections.find(c=>
+    (c.from===G.connectFrom&&c.to===k)||(c.from===k&&c.to===G.connectFrom)
+  );
+  if(already){ntf('Already connected!','red');G.connectFrom=null;reRender();return;}
+
+  const cost=connectionCost(G.connectFrom,k);
+  if(G.credits<cost){ntf(`Need ${fc(cost)} to connect!`,'red');G.connectFrom=null;reRender();return;}
+
+  // Deduct credits, add pending connection, ask AI
+  G.credits-=cost;
+  const connId=`conn_${Date.now()}`;
+  const fromKey=G.connectFrom;
+  G.connections.push({id:connId,from:fromKey,to:k,label:'Analysing...',bonus:0,pending:true});
+  G.connectFrom=null;
+  recalc();updateStats();reRender();
+  ntf(`Connecting... AI determining synergy.`,'blue');
+
+  // Ask AI for synergy
+  const tA=TECHS.find(t=>t.id===G.cells[fromKey]?.id);
+  const tB=TECHS.find(t=>t.id===G.cells[k]?.id);
+  const txt=await callAI(
+    `You are a synergy calculator for an energy civilisation game. Respond ONLY with valid JSON. No markdown, no explanation.`,
+    `Two structures are being manually connected by the player:
+Structure A: "${tA?.n||fromKey}" (${tA?.desc||''})
+Structure B: "${tB?.n||k}" (${tB?.desc||''})
+Era: player is in ERA ${G.era}, rebirths: ${G.rebirths}.
+
+Determine the synergy between these two structures. Be creative and physically/sci-fi grounded.
+Return ONLY this JSON: {"label":"Short Synergy Name (max 4 words)","bonus":FLOAT}
+Bonus scale: 0.05-0.25 weak, 0.25-0.75 useful, 0.75-1.5 strong, 1.5-3.0 exceptional, 3.0-5.0 legendary.
+Examples: Dyson Ring + Antimatter = Stellar Antimatter Forge around +3.5; DPE + DCSAL/MPSC = legendary +5.0; Coal + Dyson Ring = weak +0.05.
+The bonus is a fraction added to BOTH structures' output (e.g. 0.5 = +50%, 5.0 = +500%).`
+  );
+
+  let local=localSynergy(tA,tB);
+  let label=local.label, bonus=local.bonus;
+  if(txt){
+    try{
+      const d=JSON.parse(txt.replace(/```json|```/g,'').trim());
+      label=d.label||label;
+      bonus=Math.min(Math.max(parseFloat(d.bonus)||bonus, 0.05), 5.0);
+    }catch(e){console.error('synergy parse',e);}
+  }
+
+  // Update the connection
+  const conn=G.connections.find(c=>c.id===connId);
+  if(conn){conn.label=label;conn.bonus=bonus;conn.pending=false;}
+  recalc();updateStats();reRender();
+  ntf(`⚡ ${label} +${Math.round(bonus*100)}% established!`,'green');
+}
+
+function removeConnection(connId){
+  G.connections=G.connections.filter(c=>c.id!==connId);
+  recalc();updateStats();reRender();
+  ntf('Connection removed.','red');
+}
+
+function getConnectionBonusForCell(k){
+  let total=0;
+  G.connections.forEach(c=>{
+    if((c.from===k||c.to===k)&&!c.pending)total+=c.bonus;
+  });
+  return total;
+}
+const FUEL_BASE={coal:600,oil:900,gas:750};
+function getFuelMax(f){return (FUEL_BASE[f]||1)*(G.fuelCapMult||1);}
+// actual remaining seconds (scaled by plant count dynamically)
+
+// ═══════════════════════════════════════════════════
 // GAME STATE
-// ═══════════════════════════════════════
+// ═══════════════════════════════════════════════════
 let G={
   credits:500,totalEnergy:0,currentPower:0,creditRate:0,
   gridCols:12,gridRows:9,cells:{},
   selTech:null,demMode:false,speed:1,
-  era:'I',seenEras:new Set(['I']),bought:{},
+  era:'I',seenEras:new Set(['I']),
+  bought:{},aiRes:[],
   rebirths:0,rebirthMult:1,
   eventMod:1,crEventMod:1,
-  permUpgrades:{},
-  rebirthUnlocked:false,
-  negEventsSurvived:0,
-  achievementsEarned:new Set(),
+  permUpgrades:{},rebirthUnlocked:false,
+  negEvents:0,achievementsEarned:new Set(),
+  fuel:{coal:600,oil:900,gas:750},
+  deadFuels:new Set(),
+  aiHistory:[],
+  lastAiResEra:'',
+  currentSlot:0,
+  // Dark Energy (prestige currency)
+  darkEnergy:0,
+  infusions:{},
+  connections:[], // [{id,from,to,label,bonus,pending}]
+  connectMode:false,
+  connectFrom:null,
+  aiSynergyCooldown:0,
+
+  // Permanent Big Bang choices
+  rebirthBuffs:[],
+  startCreditMult:1,
+  permRows:0,
+  permCols:0,
+  fuelCapMult:1,
 };
 
 let ntTimer=null,achTimer=null,tickInt=null;
 let parts=[],canvas,ctx,idleTk=0;
 let bbCanvas,bbCtx,bbParts=[];
 
-// ═══════════════════════════════════════
+// ═══════════════════════════════════════════════════
 // FORMATTERS
-// ═══════════════════════════════════════
+// ═══════════════════════════════════════════════════
 function fp(w){
   if(!isFinite(w)||w<=0)return'0 W';
-  if(w>=1e80)return(w/1e80).toFixed(1)+'×10⁸⁰ W';
-  if(w>=1e65)return(w/1e65).toFixed(2)+'×10⁶⁵ W';
-  if(w>=1e54)return(w/1e54).toFixed(2)+'×10⁵⁴ W';
-  if(w>=1e42)return(w/1e42).toFixed(1)+'×10⁴² W';
-  if(w>=1e28)return(w/1e28).toFixed(2)+'×10²⁸ W';
-  if(w>=1e25)return(w/1e25).toFixed(2)+'×10²⁵ W';
-  if(w>=1e12)return(w/1e12).toFixed(2)+' TW';
-  if(w>=1e9)return(w/1e9).toFixed(2)+' GW';
-  if(w>=1e6)return(w/1e6).toFixed(2)+' MW';
-  if(w>=1e3)return(w/1e3).toFixed(1)+' kW';
+  const tiers=[[1e80,'×10⁸⁰ W'],[1e65,'×10⁶⁵ W'],[1e54,'×10⁵⁴ W'],[1e42,'×10⁴² W'],[1e28,'×10²⁸ W'],[1e25,'×10²⁵ W'],[1e12,' TW'],[1e9,' GW'],[1e6,' MW'],[1e3,' kW']];
+  for(const[d,s]of tiers)if(w>=d)return(w/d).toFixed(2)+s;
   return Math.round(w)+' W';
 }
 function fe(e){
   if(!isFinite(e)||e<=0)return'0 Wh';
-  if(e>=1e80)return(e/1e80).toFixed(1)+'×10⁸⁰ Wh';
-  if(e>=1e65)return(e/1e65).toFixed(2)+'×10⁶⁵ Wh';
-  if(e>=1e54)return(e/1e54).toFixed(2)+'×10⁵⁴ Wh';
-  if(e>=1e42)return(e/1e42).toFixed(1)+'×10⁴² Wh';
-  if(e>=1e28)return(e/1e28).toFixed(2)+'×10²⁸ Wh';
-  if(e>=1e25)return(e/1e25).toFixed(2)+'×10²⁵ Wh';
-  if(e>=1e12)return(e/1e12).toFixed(2)+' TWh';
-  if(e>=1e9)return(e/1e9).toFixed(2)+' GWh';
-  if(e>=1e6)return(e/1e6).toFixed(2)+' MWh';
-  if(e>=1e3)return(e/1e3).toFixed(1)+' kWh';
+  const tiers=[[1e80,'×10⁸⁰ Wh'],[1e65,'×10⁶⁵ Wh'],[1e54,'×10⁵⁴ Wh'],[1e42,'×10⁴² Wh'],[1e28,'×10²⁸ Wh'],[1e25,'×10²⁵ Wh'],[1e12,' TWh'],[1e9,' GWh'],[1e6,' MWh'],[1e3,' kWh']];
+  for(const[d,s]of tiers)if(e>=d)return(e/d).toFixed(2)+s;
   return Math.round(e)+' Wh';
 }
 function fc(c){
   if(!isFinite(c)||c<=0)return'0 ¢';
-  if(c>=1e15)return(c/1e15).toFixed(2)+' P¢';
-  if(c>=1e12)return(c/1e12).toFixed(2)+' T¢';
-  if(c>=1e9)return(c/1e9).toFixed(2)+' G¢';
-  if(c>=1e6)return(c/1e6).toFixed(2)+' M¢';
-  if(c>=1e3)return(c/1e3).toFixed(1)+' k¢';
+  const tiers=[[1e15,' P¢'],[1e12,' T¢'],[1e9,' G¢'],[1e6,' M¢'],[1e3,' k¢']];
+  for(const[d,s]of tiers)if(c>=d)return(c/d).toFixed(2)+s;
   return Math.round(c)+' ¢';
 }
 
-// ═══════════════════════════════════════
+// ═══════════════════════════════════════════════════
+// FUEL DEPLETION
+// ═══════════════════════════════════════════════════
+function countFuelPlants(type){
+  return Object.values(G.cells).filter(c=>c.id===type).length;
+}
+function tickFuel(dt){
+  ['coal','oil','gas'].forEach(f=>{
+    if(G.deadFuels.has(f))return;
+    const n=countFuelPlants(f);
+    if(n===0)return;
+    // drain rate: 1s per second base, doubles per extra plant
+    const drain=n*dt;
+    G.fuel[f]=Math.max(0,G.fuel[f]-drain);
+    const pct=G.fuel[f]/getFuelMax(f);
+    document.getElementById(`fb-${f}`).style.width=(pct*100)+'%';
+    document.getElementById(`fp-${f}`).textContent=Math.ceil(pct*100)+'%';
+    if(pct<0.3)document.getElementById(`fb-${f}`).style.background='#ff4444';
+    else if(pct<0.6)document.getElementById(`fb-${f}`).style.background='#ff8800';
+    else document.getElementById(`fb-${f}`).style.background=f==='coal'?'#ff6633':f==='oil'?'#ffaa33':'#ffee44';
+    if(G.fuel[f]<=0&&!G.deadFuels.has(f)){
+      G.deadFuels.add(f);
+      killFuel(f);
+    }
+  });
+}
+function killFuel(fuelType){
+  ntf(`⚠ ${fuelType.toUpperCase()} reserves depleted!`,'red');
+  shakeScreen();
+  // degrade all plants of this type
+  Object.keys(G.cells).forEach(k=>{
+    if(G.cells[k].id===fuelType){
+      G.cells[k].depleting=true;
+      G.cells[k].depFactor=1.0;
+    }
+  });
+  recalc();
+  // spurt particles from all dead cells
+  Object.keys(G.cells).forEach(k=>{
+    if(G.cells[k].id===fuelType){
+      const t=TECHS.find(t=>t.id===fuelType);
+      burst(k,t,true);
+    }
+  });
+}
+function tickDepletingCells(dt){
+  let changed=false;
+  Object.keys(G.cells).forEach(k=>{
+    const c=G.cells[k];
+    if(!c.depleting)return;
+    c.depFactor=Math.max(0,c.depFactor-0.005*dt);
+    if(c.depFactor<=0){
+      c.dead=true;c.depleting=false;
+    }
+    changed=true;
+  });
+  if(changed)reRender();
+}
+function getFuelFactor(techId){
+  const t=TECHS.find(t=>t.id===techId);
+  if(!t||!t.deplete)return 1;
+  const k=Object.keys(G.cells).find(k=>G.cells[k].id===techId);
+  if(!k)return 1;
+  const c=G.cells[k];
+  if(c.dead)return 0;
+  if(c.depleting)return c.depFactor||1;
+  return G.deadFuels.has(t.deplete)?0:1;
+}
+
+// ═══════════════════════════════════════════════════
 // MULTIPLIER ENGINE
-// ═══════════════════════════════════════
-function effOut(tech){
+// ═══════════════════════════════════════════════════
+const ALL_RES=()=>[...STATIC_RES,...G.aiRes];
+function effOut(tech,cellKey){
   let m=G.rebirthMult;
-  RES.forEach(r=>{
+  ALL_RES().forEach(r=>{
     if(!r.id||!G.bought[r.id]||!r.m)return;
     const tgs=TGT[r.tg];
     if(tgs===null||tgs.includes(tech.id))m*=r.m;
   });
-  // perm upgrades from events
   if(G.permUpgrades[tech.id])m*=G.permUpgrades[tech.id];
   m*=G.eventMod;
+  if(cellKey){
+    const c=G.cells[cellKey];
+    if(c&&c.dead)return 0;
+    if(c&&c.depleting)m*=(c.depFactor||1);
+    else if(tech.deplete&&G.deadFuels.has(tech.deplete))return 0;
+    // Dark Matter Infusion bonus
+    if(G.infusions[cellKey])m*=G.infusions[cellKey].mult;
+    // Manual connection synergy bonus
+    const connBonus=getConnectionBonusForCell(cellKey);
+    if(connBonus>0)m*=(1+connBonus);
+  }
   return tech.out*m;
 }
 function effCR(tech){
   let m=Math.sqrt(G.rebirthMult);
-  RES.forEach(r=>{
+  ALL_RES().forEach(r=>{
     if(!r.id||!G.bought[r.id]||!r.m)return;
     const tgs=TGT[r.tg];
     if(tgs===null||tgs.includes(tech.id))m*=Math.sqrt(r.m);
@@ -508,19 +861,18 @@ function effCR(tech){
 }
 function recalc(){
   let pw=0,cr=0;
-  Object.values(G.cells).forEach(c=>{
+  Object.entries(G.cells).forEach(([k,c])=>{
     const t=TECHS.find(t=>t.id===c.id);
-    if(t){pw+=effOut(t);cr+=effCR(t);}
+    if(t){pw+=effOut(t,k);cr+=effCR(t);}
   });
   G.currentPower=pw;G.creditRate=cr;
   reRender();
 }
 
-// ═══════════════════════════════════════
+// ═══════════════════════════════════════════════════
 // GRID
-// ═══════════════════════════════════════
+// ═══════════════════════════════════════════════════
 const CSIZ=74,GPAD=14;
-
 function buildGrid(){
   const g=document.getElementById('grid');
   g.style.gridTemplateColumns=`repeat(${G.gridCols},var(--cell))`;
@@ -539,47 +891,73 @@ function buildGrid(){
   Object.keys(G.cells).forEach(k=>renderCell(k));
   resizeCv();
 }
-
 function renderCell(k){
-  const el=document.getElementById(`c-${k}`);
-  if(!el)return;
+  const el=document.getElementById(`c-${k}`);if(!el)return;
   const d=G.cells[k];
-  if(!d){el.className='cell';el.innerHTML=`<span style="font-size:9px;color:#1a3050">+</span>`;return;}
-  const t=TECHS.find(t=>t.id===d.id);
-  if(!t)return;
-  el.className=`cell occ ${t.gl}`;
-  el.innerHTML=`<div class="ci">${t.ic}</div><div class="cn">${t.n}</div><div class="co">${fp(effOut(t))}</div>`;
+  if(!d){
+    el.className='cell';
+    // Highlight valid targets in connect mode
+    if(G.connectMode&&G.connectFrom&&k!==G.connectFrom){
+      const dist=cellDist(G.connectFrom,k);
+      if(dist<=2)el.style.outline='1px dashed #00ff9d44';
+      else el.style.outline='';
+    } else el.style.outline='';
+    el.innerHTML=`<span style="font-size:9px;color:#1a3050">+</span>`;
+    return;
+  }
+  const t=TECHS.find(t=>t.id===d.id);if(!t)return;
+  const dead=d.dead;
+  const inf=G.infusions[k];
+  const connBonus=getConnectionBonusForCell(k);
+  const connCount=G.connections.filter(c=>(c.from===k||c.to===k)&&!c.pending).length;
+  const isConnFrom=G.connectFrom===k;
+  const glClass=dead?'gdead':inf?'gdark':t.gl;
+  const outlineStyle=isConnFrom?'outline:2px solid #00ff9d;':
+    (G.connectMode&&G.connectFrom&&cellDist(G.connectFrom,k)<=2&&k!==G.connectFrom)?'outline:1px dashed #00ff9d66;':'';
+  el.className=`cell occ ${glClass}`;
+  el.style.cssText=outlineStyle;
+  const outVal=effOut(t,k);
+  const depBar=d.depleting?`<div class="dep-bar" style="width:${(d.depFactor||1)*100}%"></div>`:'';
+  const depTxt=dead?`<div class="cdep">DEPLETED</div>`:'';
+  const connBadge=connBonus>0?`<div class="csyn">⚡+${Math.round(connBonus*100)}%</div>`:'';
+  const connDot=connCount>0?`<div class="cconndot">${connCount}🔗</div>`:'';
+  const displayName=inf?inf.name:t.n;
+  const displayIcon=inf?`🌑${t.ic}`:t.ic;
+  el.innerHTML=`<div class="ci">${displayIcon}</div><div class="cn">${displayName}</div><div class="co">${dead?'0 W':fp(outVal)}</div>${connBadge}${connDot}${depTxt}${depBar}`;
+  el.oncontextmenu=(e)=>{e.preventDefault();openInfuseModal(k);};
 }
 function reRender(){Object.keys(G.cells).forEach(k=>renderCell(k));}
 
-// ═══════════════════════════════════════
+// ═══════════════════════════════════════════════════
 // TECH PANEL
-// ═══════════════════════════════════════
+// ═══════════════════════════════════════════════════
 function buildTechPanel(){
   let lastEra=null,html='';
   TECHS.forEach(t=>{
     if(t.era!==lastEra){
-      const cls=t.era==='Ω'?'th omega-hdr':t.era>='IX'?'th exotic':'th';
+      const cls=t.era==='Ω'?'th omega-hdr':['IX','X','XI'].includes(t.era)?'th exotic':'th';
       html+=`<div class="${cls}">ERA ${t.era}: ${t.en}</div>`;
       lastEra=t.era;
     }
     const ul=G.totalEnergy>=t.unl||t.unl===0;
+    const isDep=t.deplete&&G.deadFuels.has(t.deplete);
     const sel=G.selTech===t.id?' sel':'';
     const lk=ul?'':' lk';
-    html+=`<div class="ti${sel}${lk}" id="ti-${t.id}" ${ul?`onclick="selT('${t.id}')"`:''}>
-      <div class="tn">${t.ic} ${t.n}</div>
+    const depCls=isDep?' depleted':'';
+    html+=`<div class="ti${sel}${lk}${depCls}" ${ul&&!isDep?`onclick="selT('${t.id}')"`:''}>
+      <div class="tn">${t.ic} ${t.n}${isDep?' 🚫':''}</div>
       <div class="tm">Output: ${fp(t.out)}</div>
       <div class="tc">Cost: ${fc(t.cost)}</div>
-      ${ul?'':`<div class="tu">Unlock: ${fe(t.unl)}</div>`}
+      ${ul?isDep?'<div class="tu">FUEL DEPLETED</div>':'':`<div class="tu">Unlock: ${fe(t.unl)}</div>`}
     </div>`;
   });
   document.getElementById('tlist').innerHTML=html;
 }
-
 function selT(id){
+  const t=TECHS.find(t=>t.id===id);
+  if(t&&t.deplete&&G.deadFuels.has(t.deplete)){ntf('Fuel reserves depleted!','red');return;}
   G.selTech=id;G.demMode=false;
   document.getElementById('dbtn').classList.remove('on');
-  const t=TECHS.find(t=>t.id===id);
   if(t){
     document.getElementById('it').innerHTML=`<span>${t.ic} ${t.n}</span> — ${t.desc} | Cost: <span>${fc(t.cost)}</span>`;
     document.getElementById('plbtn').disabled=false;
@@ -587,18 +965,20 @@ function selT(id){
   buildTechPanel();
 }
 
-// ═══════════════════════════════════════
-// RESEARCH PANEL
-// ═══════════════════════════════════════
+// ═══════════════════════════════════════════════════
+// RESEARCH PANEL (static + AI-generated)
+// ═══════════════════════════════════════════════════
 function buildResPanel(){
   let html='';
-  RES.forEach(r=>{
+  const allRes=ALL_RES();
+  allRes.forEach(r=>{
     if(r.cat){html+=`<div class="rcat">${r.cat}</div>`;return;}
     const ul=G.totalEnergy>=r.req||G.bought[r.id];
     if(!ul)return;
     const bt=G.bought[r.id];
-    const cls=r.cls?` ${r.cls}`:'';
+    const cls=(r.cls?` ${r.cls}`:'')+(r.aiGen?' ai-res':'');
     html+=`<div class="ui${bt?' bought':''}${cls}" ${bt?'':`onclick="buyRes('${r.id}')"`}>
+      ${r.aiGen?'<div class="ai-badge">⚡ AI GENERATED</div>':''}
       <div class="un">${r.n}</div>
       <div class="ud">${r.d}</div>
       <div class="uc">${bt?'✓ Researched':fc(r.cost)}</div>
@@ -606,71 +986,177 @@ function buildResPanel(){
   });
   document.getElementById('rpanel').innerHTML=html||`<div style="font-size:8px;color:var(--muted);padding:8px">Generate energy to unlock research.</div>`;
 }
-
 function buyRes(id){
-  const r=RES.find(x=>x.id===id);
+  const r=ALL_RES().find(x=>x.id===id);
   if(!r||G.bought[id])return;
   if(G.credits<r.cost){ntf('Insufficient credits!','red');return;}
   G.credits-=r.cost;G.bought[id]=true;
-  if(r.action==='unlock_rebirth'){G.rebirthUnlocked=true;ntf('Singularity Compression ready! Build Omega to rebirth.','purple');}
+  if(r.action==='unlock_rebirth'){
+    G.rebirthUnlocked=true;
+    ntf('🌌 Singularity Compression ready! Big Bang Rebirth unlocked.','purple');
+    document.getElementById('ec').className='rbc';
+    document.getElementById('et').textContent='🌌 BIG BANG REBIRTH READY';
+    document.getElementById('ed').textContent='The universe can now be collapsed into a singularity. Choose one permanent law for the next universe.';
+    document.getElementById('ec-rb').style.display='inline-block';
+    document.getElementById('eo').classList.add('on');
+  }
   recalc();buildResPanel();updateStats();
   ntf(`✓ ${r.n}`,'green');
 }
 
-// ═══════════════════════════════════════
+// ═══════════════════════════════════════════════════
+// AI — CORE CALL
+// ═══════════════════════════════════════════════════
+let aiBusy=false;
+const AI_PROXY_URL=''; // Optional: put your Cloudflare/Vercel AI proxy URL here. Leave blank for GitHub Pages-safe local gameplay.
+async function callAI(systemPrompt,userMsg){
+  if(!AI_PROXY_URL)return null;
+  if(aiBusy)return null;
+  aiBusy=true;
+  document.getElementById('ai-thinking').classList.add('on');
+  try{
+    const res=await fetch(AI_PROXY_URL,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({system:systemPrompt,message:userMsg})
+    });
+    if(!res.ok)throw new Error(`AI proxy error ${res.status}`);
+    const data=await res.json();
+    return data.text||null;
+  }catch(e){
+    console.error('AI error',e);return null;
+  }finally{
+    aiBusy=false;
+    document.getElementById('ai-thinking').classList.remove('on');
+  }
+}
+
+// ── AI: ERA LORE ──────────────────────────────────
+async function aiEraLore(era,eraName,techBuilt){
+  const structures=Object.values(G.cells).map(c=>c.id).join(', ')||'none yet';
+  const txt=await callAI(
+    `You are the narrator of a civilisation-building energy game called Energy Ascension. Write dramatic, scientific, poetic era transition lore. Be concise (3-4 sentences max). Reference the real physics or sci-fi concepts involved. Tone: awe-inspiring, slightly ominous.`,
+    `The player just entered ERA ${era} (${eraName}) by building a ${techBuilt}. Their civilisation currently has these structures: ${structures}. They have completed ${G.rebirths} rebirths. Write era transition lore.`
+  );
+  return txt||null;
+}
+
+// ── AI: DYNAMIC RESEARCH ──────────────────────────
+async function aiGenerateResearch(){
+  if(G.aiRes.filter(r=>r.id&&!G.bought[r.id]).length>=3)return; // don't spam
+  const structures=[...new Set(Object.values(G.cells).map(c=>c.id))];
+  if(structures.length===0)return;
+  const era=G.era;
+  if(G.lastAiResEra===era&&G.aiRes.length>0)return;
+  G.lastAiResEra=era;
+  const txt=await callAI(
+    `You are a research upgrade generator for an energy civilisation game called Energy Ascension. Respond ONLY with valid JSON. No markdown, no explanation, just JSON.`,
+    `The player is in ERA ${era} and has built: ${structures.join(', ')}. They have ${G.rebirths} rebirths. Generate 2 creative, thematically appropriate research upgrades. Each should feel unique and scientifically/sci-fi flavored. Return this exact JSON structure:
+{"upgrades":[{"id":"ai_${era}_1","n":"Short Name","d":"One sentence description. Specific structure or 'all structures' +X% output.","cost":CREDITS_NUMBER,"m":MULTIPLIER_FLOAT,"tg":"TARGET_STRING","req":ENERGY_UNLOCK_NUMBER},{"id":"ai_${era}_2","n":"Short Name","d":"Description.","cost":CREDITS_NUMBER,"m":MULTIPLIER_FLOAT,"tg":"TARGET_STRING","req":ENERGY_UNLOCK_NUMBER}]}
+Valid tg values: fossil,dirty,gas,oil,wind,solar,hydro,geo,nuclear,tidal,orbital,fusion,anti,dyson,stellar,dpe,dcsal,mpsc,pulsar,quasar,neutronmerge,zpt,vacuum,cstring,brane,kd1,kd2,kd3,kd4,omega,renew,space,all
+Cost should be roughly 2-5× the player's current credit rate per second (estimate based on era). Multiplier between 1.5 and 10.`
+  );
+  if(!txt)return;
+  try{
+    const clean=txt.replace(/```json|```/g,'').trim();
+    const data=JSON.parse(clean);
+    if(data.upgrades){
+      const newRes=data.upgrades.map(u=>({...u,aiGen:true}));
+      // dedupe by id
+      newRes.forEach(r=>{
+        if(!G.aiRes.find(x=>x.id===r.id))G.aiRes.push(r);
+      });
+      buildResPanel();
+      ntf('⚡ New AI research available!','green');
+    }
+  }catch(e){console.error('AI research parse error',e,txt);}
+}
+
+// ── AI: DYNAMIC EVENT ─────────────────────────────
+async function aiGenerateEvent(){
+  const structures=[...new Set(Object.values(G.cells).map(c=>c.id))];
+  if(structures.length===0)return null;
+  const txt=await callAI(
+    `You are an event narrator for an energy civilisation game. Generate a dramatic random event. Respond ONLY with valid JSON. No markdown.`,
+    `Player ERA: ${G.era}. Structures: ${structures.join(', ')}. Rebirths: ${G.rebirths}. Power: ${fp(G.currentPower)}.
+Generate one random event. Can be positive (breakthrough, anomaly, discovery) or negative (storm, failure, crisis). Return:
+{"title":"Event Title","desc":"2 sentences of dramatic narrative.","effect":"One sentence describing the mechanical effect.","type":"buff|debuff|credits|permupgrade","val":NUMBER,"dur":SECONDS_OR_0}
+For buff/debuff: val is multiplier (e.g. 2.0 for 2× or 0.5 for half), dur is seconds active.
+For credits: val is fraction of current credits gained (e.g. 0.2 for +20%).
+For permupgrade: val ignored, randomly upgrades one structure ×2.`
+  );
+  if(!txt)return null;
+  try{
+    const clean=txt.replace(/```json|```/g,'').trim();
+    return JSON.parse(clean);
+  }catch(e){console.error('AI event parse',e);return null;}
+}
+
+// ═══════════════════════════════════════════════════
 // CELL INTERACTION
-// ═══════════════════════════════════════
+// ═══════════════════════════════════════════════════
 function onCell(k){
+  if(G.connectMode){handleConnectClick(k);return;}
   if(G.demMode){
-    if(G.cells[k]){delete G.cells[k];renderCell(k);recalc();updateStats();ntf('Demolished.','red');}
+    if(G.cells[k]){
+      delete G.cells[k];
+      delete G.infusions[k];
+      G.connections=G.connections.filter(c=>c.from!==k&&c.to!==k);
+      renderCell(k);recalc();updateStats();reRender();ntf('Demolished.','red');
+    }
     return;
   }
   if(!G.selTech)return;
   if(G.cells[k]){ntf('Cell occupied!','red');return;}
-  const t=TECHS.find(t=>t.id===G.selTech);
-  if(!t)return;
-  if(G.totalEnergy<t.unl&&t.unl>0){ntf(`Unlock at ${fe(t.unl)}`,'red');return;}
+  const t=TECHS.find(t=>t.id===G.selTech);if(!t)return;
+  if(G.totalEnergy<t.unl&&t.unl>0){ntf(`Unlock: ${fe(t.unl)}`,'red');return;}
+  if(t.deplete&&G.deadFuels.has(t.deplete)){ntf('Fuel reserves depleted!','red');return;}
   if(G.credits<t.cost){ntf(`Need ${fc(t.cost)}`,'red');return;}
   G.credits-=t.cost;
   G.cells[k]={id:G.selTech};
   renderCell(k);recalc();updateStats();
   checkEra(t);burst(k,t);
-  // Screen shake for big structures
   const bigEras=['VI','VII','VIII','IX','X','XI','XII','Ω'];
-  if(bigEras.includes(t.era)){
-    document.body.classList.remove('shake');
-    void document.body.offsetWidth;
-    document.body.classList.add('shake');
-    setTimeout(()=>document.body.classList.remove('shake'),500);
-  }
+  if(bigEras.includes(t.era))shakeScreen();
   ntf(`Built: ${t.ic} ${t.n}`,'green');
   checkAchievements();
 }
-
 function togDem(){
-  G.demMode=!G.demMode;G.selTech=null;
+  G.demMode=!G.demMode;G.selTech=null;G.connectMode=false;G.connectFrom=null;
   document.getElementById('plbtn').disabled=true;
+  document.getElementById('cbtn').classList.remove('on');
   document.querySelectorAll('.ti').forEach(e=>e.classList.remove('sel'));
   document.getElementById('dbtn').classList.toggle('on',G.demMode);
   document.getElementById('it').innerHTML=G.demMode
     ?'<span style="color:var(--red)">DEMOLISH MODE</span> — Click a structure.'
     :'Select a technology, then click an empty cell.';
 }
+function shakeScreen(){
+  document.body.classList.remove('shake');
+  void document.body.offsetWidth;
+  document.body.classList.add('shake');
+  setTimeout(()=>document.body.classList.remove('shake'),500);
+}
 
-// ═══════════════════════════════════════
+// ═══════════════════════════════════════════════════
 // TICK
-// ═══════════════════════════════════════
+// ═══════════════════════════════════════════════════
 function startTick(){if(tickInt)clearInterval(tickInt);tickInt=setInterval(tick,1000);}
+let tickN=0;
 function tick(){
   const dt=G.speed;
   G.totalEnergy+=G.currentPower*dt;
   G.credits+=G.creditRate*dt;
-  updateStats();
-  // Rebuild panels every 3s to avoid jank
-  if(Math.round(G.totalEnergy)%3===0){buildTechPanel();buildResPanel();}
+  tickFuel(dt);
+  tickDepletingCells(dt);
+  tickN++;
+  if(tickN%3===0){updateStats();buildTechPanel();buildResPanel();}
+  else updateStats();
   tickParts();
-  // Random events every ~45 seconds (randomised)
-  if(Math.random()<(1/45)*dt)triggerEvent();
+  // Random events every ~40s
+  if(Math.random()<(1/40)*dt)triggerEvent();
+  // Auto-save every 60 ticks
+  if(tickN%60===0)autoSave();
 }
 function setSpd(s){
   G.speed=s;
@@ -687,275 +1173,579 @@ function updateStats(){
   document.getElementById('re').textContent=fe(G.currentPower);
   document.getElementById('rc').textContent=fc(G.creditRate);
   document.getElementById('srb').textContent=G.rebirths;
-  document.getElementById('smult').textContent=`×${G.rebirthMult.toFixed(2)}`;
+  document.getElementById('smult').textContent=`×${G.rebirthMult.toFixed(1)}`;
+  document.getElementById('sde').textContent=fde(G.darkEnergy);
 }
 
-// ═══════════════════════════════════════
+// ═══════════════════════════════════════════════════
 // ERA
-// ═══════════════════════════════════════
-function checkEra(tech){
+// ═══════════════════════════════════════════════════
+async function checkEra(tech){
   if(G.seenEras.has(tech.era))return;
   G.seenEras.add(tech.era);G.era=tech.era;
-  document.getElementById('era-disp').textContent=`ERA ${tech.era}: ${tech.en.toUpperCase()}`;
-  const m=ERA_M[tech.era];if(!m)return;
+  document.getElementById('era-d').textContent=`ERA ${tech.era}: ${tech.en.toUpperCase()}`;
   const card=document.getElementById('ec');
-  card.className=tech.era==='Ω'?'rebirth-card':'';
-  document.getElementById('et').textContent=m.t;
-  document.getElementById('ed').textContent=m.d;
-  document.getElementById('ec-close').style.display='inline-block';
-  const rb=document.getElementById('ec-rebirth');
-  rb.style.display=m.rebirth&&G.rebirthUnlocked?'inline-block':'none';
+  card.className=tech.era==='Ω'?'rbc':'';
+  document.getElementById('et').textContent=`ERA ${tech.era} — ${tech.en.toUpperCase()}`;
+  document.getElementById('ed').textContent='Generating lore...';
+  document.getElementById('ec-rb').style.display='none';
   document.getElementById('eo').classList.add('on');
+  // AI lore
+  const lore=await aiEraLore(tech.era,tech.en,tech.n);
+  document.getElementById('ed').textContent=lore||`ERA ${tech.era}: ${tech.en}. A new chapter begins.`;
+  if(tech.era==='Ω'&&G.rebirthUnlocked)document.getElementById('ec-rb').style.display='inline-block';
+  // Trigger AI research generation for new era
+  aiGenerateResearch();
 }
 function closeEra(){document.getElementById('eo').classList.remove('on');}
 
-// ═══════════════════════════════════════
-// REBIRTH
-// ═══════════════════════════════════════
-function doRebirth(){
+// ═══════════════════════════════════════════════════
+// REBIRTH CHOICE SYSTEM
+// ═══════════════════════════════════════════════════
+let pendingRebirthChoices=[];
+
+function makeRebirthBuffPool(){
+  const rb=G.rebirths||0;
+  const scale=1+rb*0.35;
+  return[
+    {type:'allMult',ico:'🌌',n:'Universal Constant Shift',d:'The newborn universe has more favorable physical constants for every energy system.',effect:`All structures permanently ×${(2.5*scale).toFixed(1)}`,m:2.5*scale},
+    {type:'targetMult',target:'dpe',ico:'🕳',n:'Black Hole Genesis',d:'Primordial singularities form earlier, making Dyson-Penrose systems vastly more efficient.',effect:`DPE structures permanently ×${(8*scale).toFixed(1)}`,m:8*scale},
+    {type:'targetMult',target:'dyson',ico:'☀️',n:'Stellar Birthright',d:'Stars in the new universe are easier to harvest with megastructures.',effect:`Dyson structures permanently ×${(7*scale).toFixed(1)}`,m:7*scale},
+    {type:'targetMult',target:'fusion',ico:'🌟',n:'Clean Fusion Epoch',d:'Hydrogen burning and plasma control become universal engineering instincts.',effect:`Fusion permanently ×${(9*scale).toFixed(1)}`,m:9*scale},
+    {type:'targetMult',target:'anti',ico:'✨',n:'Antimatter Symmetry',d:'Matter-antimatter containment stabilizes across the next universe.',effect:`Antimatter permanently ×${(10*scale).toFixed(1)}`,m:10*scale},
+    {type:'targetGroup',group:'renew',ico:'🌱',n:'Living Grid Principle',d:'Renewable and planetary systems become dramatically more efficient.',effect:`Renewables permanently ×${(5*scale).toFixed(1)}`,m:5*scale},
+    {type:'targetGroup',group:'space',ico:'🚀',n:'Orbital Destiny',d:'Space infrastructure develops faster in every universe after this one.',effect:`Space structures permanently ×${(6*scale).toFixed(1)}`,m:6*scale},
+    {type:'startCredits',ico:'💰',n:'Causal Wealth Echo',d:'A memory of the previous economy survives the Big Bang.',effect:`Starting credits permanently ×${(4*scale).toFixed(1)}`,m:4*scale},
+    {type:'grid',ico:'⬛',n:'Expanded Spacetime Lattice',d:'The newborn universe has more usable space for energy infrastructure.',effect:'+1 permanent row and +1 permanent column',rows:1,cols:1},
+    {type:'darkEnergy',ico:'🌑',n:'Dark Energy Reservoir',d:'The collapse leaves behind a massive dark-energy remnant.',effect:`Gain ${fde(Math.round(1000*scale))} instantly`,amount:Math.round(1000*scale)},
+    {type:'fuel',ico:'⛽',n:'Ancient Fuel Veins',d:'Fossil reserves last longer in the next universe, buying more early-game time.',effect:`Fuel reserves permanently ×${(2.5*scale).toFixed(1)}`,m:2.5*scale}
+  ];
+}
+
+function generateRebirthChoices(){
+  const pool=makeRebirthBuffPool();
+  const choices=[];
+  while(choices.length<5&&pool.length>0){
+    const i=Math.floor(Math.random()*pool.length);
+    choices.push(pool.splice(i,1)[0]);
+  }
+  return choices;
+}
+
+function openRebirthChoices(){
+  if(!G.rebirthUnlocked){ntf('Research Singularity Compression first.','red');return;}
+  pendingRebirthChoices=generateRebirthChoices();
+  const list=document.getElementById('rbchoice-list');
+  list.innerHTML=pendingRebirthChoices.map((b,i)=>`
+    <div class="rbchoice" onclick="chooseRebirthBuff(${i})">
+      <div class="rbchoice-ico">${b.ico}</div>
+      <div class="rbchoice-name">${b.n}</div>
+      <div class="rbchoice-desc">${b.d}</div>
+      <div class="rbchoice-effect">${b.effect}</div>
+    </div>`).join('');
   closeEra();
-  // Determine multiplier gain
+  document.getElementById('rbchoice-modal').classList.add('on');
+}
+function closeRebirthChoices(){document.getElementById('rbchoice-modal').classList.remove('on');}
+function chooseRebirthBuff(i){
+  const buff=pendingRebirthChoices[i];
+  if(!buff)return;
+  closeRebirthChoices();
+  applyRebirthBuff(buff);
+  finishRebirth(buff);
+}
+function applyRebirthBuff(buff){
+  G.rebirthBuffs.push({...buff,takenAt:G.rebirths+1});
+  if(buff.type==='allMult')G.rebirthMult*=buff.m;
+  if(buff.type==='targetMult')G.permUpgrades[buff.target]=(G.permUpgrades[buff.target]||1)*buff.m;
+  if(buff.type==='targetGroup'){
+    const targets=TGT[buff.group]||[];
+    targets.forEach(id=>G.permUpgrades[id]=(G.permUpgrades[id]||1)*buff.m);
+  }
+  if(buff.type==='startCredits')G.startCreditMult*=buff.m;
+  if(buff.type==='grid'){G.permRows+=buff.rows||0;G.permCols+=buff.cols||0;}
+  if(buff.type==='darkEnergy')G.darkEnergy+=buff.amount||0;
+  if(buff.type==='fuel')G.fuelCapMult*=buff.m;
+  ntf(`🌌 New universal law: ${buff.n}`,'purple');
+}
+function finishRebirth(chosenBuff){
+  closeEra();
   const mult=2+G.rebirths*0.5;
+  const eraDE={I:0,II:5,III:15,IV:40,V:100,VI:300,VII:800,VIII:2000,IX:5000,X:12000,XI:30000,XII:80000,'Ω':200000};
+  const deEarned=Math.round((eraDE[G.era]||0)*(1+Object.keys(G.cells).length*0.1));
+  G.darkEnergy+=deEarned;
   G.rebirths++;
   G.rebirthMult*=mult;
-  // Clear grid and credits but keep rebirths and bought
-  G.cells={};
-  G.credits=500*G.rebirthMult;
-  G.totalEnergy=0;
-  G.currentPower=0;
-  G.creditRate=0;
-  G.selTech=null;
-  G.demMode=false;
-  G.seenEras=new Set(['I']);
-  G.era='I';
-  // Keep research bought except rebirth unlock and omega
-  const keepRes=new Set(['rb_prep']);
-  Object.keys(G.bought).forEach(k=>{if(keepRes.has(k))delete G.bought[k];});
-  // Apply rebirth visual theme
-  document.body.className=`rebirth${Math.min(G.rebirths,3)}`;
-  document.getElementById('era-disp').textContent='ERA I: FOSSIL AGE';
-  buildGrid();buildTechPanel();buildResPanel();updateStats();
-  checkAchievements();
+
+  const saved={
+    darkEnergy:G.darkEnergy,rebirthBuffs:G.rebirthBuffs,permUpgrades:G.permUpgrades,
+    startCreditMult:G.startCreditMult,permRows:G.permRows,permCols:G.permCols,fuelCapMult:G.fuelCapMult
+  };
+
+  G.cells={};G.credits=500*G.rebirthMult*G.startCreditMult;G.totalEnergy=0;
+  G.currentPower=0;G.creditRate=0;G.selTech=null;G.demMode=false;G.connectMode=false;G.connectFrom=null;
+  G.connections=[];G.seenEras=new Set(['I']);G.era='I';G.gridRows=9+saved.permRows;G.gridCols=12+saved.permCols;
+  G.fuel={coal:600*saved.fuelCapMult,oil:900*saved.fuelCapMult,gas:750*saved.fuelCapMult};
+  G.deadFuels=new Set();G.aiRes=[];G.lastAiResEra='';G.rebirthUnlocked=false;G.infusions={};
+
+  G.darkEnergy=saved.darkEnergy;G.rebirthBuffs=saved.rebirthBuffs;G.permUpgrades=saved.permUpgrades;
+  G.startCreditMult=saved.startCreditMult;G.permRows=saved.permRows;G.permCols=saved.permCols;G.fuelCapMult=saved.fuelCapMult;
+
+  document.getElementById('era-d').textContent='ERA I: FOSSIL AGE';
+  document.body.className='';
+  document.getElementById('cbtn').classList.remove('on');
+  document.getElementById('dbtn').classList.remove('on');
+  buildGrid();buildTechPanel();buildResPanel();updateStats();recalc();checkAchievements();
   triggerBigBang(mult);
+  setTimeout(()=>ntf(`+${fde(deEarned)} Dark Energy earned. Chosen law: ${chosenBuff.n}`,'purple'),800);
+  autoSave();
 }
 
-function triggerBigBang(mult){
-  const overlay=document.getElementById('bbang');
-  const cv=document.getElementById('bbcanvas');
-  bbCanvas=cv;
-  cv.width=window.innerWidth;cv.height=window.innerHeight;
-  bbCtx=cv.getContext('2d');
-  bbParts=[];
-  document.getElementById('bb-title').textContent='BIG BANG';
-  document.getElementById('bb-sub').innerHTML=`Universe reborn.<br>Permanent multiplier: ×${G.rebirthMult.toFixed(1)}<br>Rebirth #${G.rebirths}`;
-  overlay.classList.add('on');
-  // Spawn big bang particles from centre
-  const cx=cv.width/2,cy=cv.height/2;
-  for(let i=0;i<300;i++){
-    const a=Math.random()*Math.PI*2,spd=2+Math.random()*12;
-    const hue=Math.random()*360;
-    bbParts.push({x:cx,y:cy,vx:Math.cos(a)*spd,vy:Math.sin(a)*spd,
-      life:1,dec:0.004+Math.random()*0.008,sz:2+Math.random()*6,
-      col:`hsl(${hue},100%,70%)`});
-  }
-  animBB();
-  setTimeout(()=>{overlay.classList.remove('on');ntf(`Rebirth #${G.rebirths} — ×${G.rebirthMult.toFixed(1)} permanent!`,'purple');},4000);
+// ═══════════════════════════════════════════════════
+// EVENTS
+// ═══════════════════════════════════════════════════
+let evCooldown=0;
+async function triggerEvent(){
+  if(evCooldown>0){evCooldown--;return;}
+  if(Object.keys(G.cells).length===0)return;
+  evCooldown=25;
+  const ev=await aiGenerateEvent();
+  if(!ev)return;
+  document.getElementById('ev-title').textContent=ev.title||'EVENT';
+  document.getElementById('ev-src').textContent='⚡ AI-Generated Event';
+  document.getElementById('ev-desc').textContent=ev.desc||'';
+  document.getElementById('ev-eff').textContent=ev.effect||'';
+  document.getElementById('evpanel').classList.add('on');
+  applyEvent(ev);
 }
-
-function animBB(){
-  if(!bbCtx)return;
-  bbCtx.fillStyle='rgba(0,0,0,0.06)';
-  bbCtx.fillRect(0,0,bbCanvas.width,bbCanvas.height);
-  bbParts=bbParts.filter(p=>{
-    p.x+=p.vx;p.y+=p.vy;p.life-=p.dec;
-    if(p.life<=0)return false;
-    bbCtx.save();
-    bbCtx.globalAlpha=p.life;
-    bbCtx.fillStyle=p.col;
-    bbCtx.shadowBlur=16;bbCtx.shadowColor=p.col;
-    bbCtx.beginPath();
-    bbCtx.arc(p.x,p.y,p.sz*p.life,0,Math.PI*2);
-    bbCtx.fill();
-    bbCtx.restore();
-    return true;
-  });
-  if(bbParts.length>0||document.getElementById('bbang').classList.contains('on'))requestAnimationFrame(animBB);
-}
-
-// ═══════════════════════════════════════
-// RANDOM EVENTS
-// ═══════════════════════════════════════
-let eventCooldown=0;
-function triggerEvent(){
-  if(eventCooldown>0){eventCooldown--;return;}
-  const ev=EVENTS[Math.floor(Math.random()*EVENTS.length)];
-  document.getElementById('eb-title').textContent=ev.t;
-  document.getElementById('eb-desc').textContent=ev.d;
-  document.getElementById('eb-effect').textContent=ev.e;
-  document.getElementById('event-banner').classList.add('on');
-  // Apply effect
-  if(ev.eff==='buff'){G.eventMod*=ev.val;setTimeout(()=>{G.eventMod/=ev.val;recalc();},ev.dur*1000);}
-  else if(ev.eff==='debuff'){G.eventMod*=ev.val;setTimeout(()=>{G.eventMod/=ev.val;recalc();},ev.dur*1000);G.negEventsSurvived++;checkAchievements();}
-  else if(ev.eff==='crbuff'){G.crEventMod*=ev.val;setTimeout(()=>{G.crEventMod/=ev.val;},ev.dur*1000);}
-  else if(ev.eff==='crdebuff'){G.crEventMod*=ev.val;setTimeout(()=>{G.crEventMod/=ev.val;},ev.dur*1000);}
-  else if(ev.eff==='credits'){G.credits+=G.credits*ev.val;}
-  else if(ev.eff==='minute_credits'){G.credits+=G.creditRate*60;}
-  else if(ev.eff==='permupgrade'){
+function applyEvent(ev){
+  const t=ev.type;const v=parseFloat(ev.val)||1;const dur=(parseInt(ev.dur)||15)*1000;
+  if(t==='buff'){G.eventMod*=v;setTimeout(()=>{G.eventMod/=v;recalc();},dur);}
+  else if(t==='debuff'){G.eventMod*=v;setTimeout(()=>{G.eventMod/=v;recalc();},dur);G.negEvents++;checkAchievements();}
+  else if(t==='credits'){G.credits+=G.credits*Math.min(v,2);}
+  else if(t==='permupgrade'){
     const keys=Object.keys(G.cells);
-    if(keys.length>0){
-      const k=keys[Math.floor(Math.random()*keys.length)];
-      const techId=G.cells[k].id;
-      G.permUpgrades[techId]=(G.permUpgrades[techId]||1)*2;
-      recalc();
-    }
+    if(keys.length){const k=keys[Math.floor(Math.random()*keys.length)];const id=G.cells[k].id;G.permUpgrades[id]=(G.permUpgrades[id]||1)*2;recalc();}
   }
-  recalc();
-  eventCooldown=30;
 }
-function closeEvent(){document.getElementById('event-banner').classList.remove('on');}
+function closeEv(){document.getElementById('evpanel').classList.remove('on');}
 
-// ═══════════════════════════════════════
+// ═══════════════════════════════════════════════════
 // ACHIEVEMENTS
-// ═══════════════════════════════════════
+// ═══════════════════════════════════════════════════
+const ACHS=[
+  {id:'a1',n:'First Light',d:'Place your first structure.',c:g=>Object.keys(g.cells).length>=1},
+  {id:'a2',n:'Grid Operator',d:'Place 10 structures.',c:g=>Object.keys(g.cells).length>=10},
+  {id:'a3',n:'Megawatt Club',d:'Reach 1 MW.',c:g=>g.currentPower>=1e6},
+  {id:'a4',n:'Fossil Survivor',d:'Survive fuel depletion.',c:g=>g.deadFuels.size>=1},
+  {id:'a5',n:'Black Hole Engineer',d:'Build a DPE.',c:g=>Object.values(g.cells).some(c=>c.id==='dpe')},
+  {id:'a6',n:'Magnetar Whisperer',d:'Build an MPSC.',c:g=>Object.values(g.cells).some(c=>c.id==='mpsc')},
+  {id:'a7',n:'Type Ω Achieved',d:'Build the Omega Generator.',c:g=>Object.values(g.cells).some(c=>c.id==='omega')},
+  {id:'a8',n:'Big Bang',d:'Trigger first Rebirth.',c:g=>g.rebirths>=1},
+  {id:'a9',n:'Multiverse Engineer',d:'Rebirth 5 times.',c:g=>g.rebirths>=5},
+  {id:'a10',n:'Chaos Welcomed',d:'Survive a negative event.',c:g=>g.negEvents>=1},
+];
 function checkAchievements(){
-  ACHIEVEMENTS.forEach(a=>{
+  ACHS.forEach(a=>{
     if(G.achievementsEarned.has(a.id))return;
-    if(a.check(G)){
-      G.achievementsEarned.add(a.id);
-      showAch(a);
-    }
+    if(a.c(G)){G.achievementsEarned.add(a.id);showAch(a);}
   });
 }
 function showAch(a){
   const el=document.getElementById('ach-toast');
-  el.innerHTML=`🏆 ${a.n}<br><span style="color:var(--muted);font-size:7px">${a.d}</span>`;
+  el.innerHTML=`🏆 ${a.n}<br><span style="font-size:7px;color:var(--muted)">${a.d}</span>`;
   el.classList.add('on');
   if(achTimer)clearTimeout(achTimer);
-  achTimer=setTimeout(()=>el.classList.remove('on'),3000);
+  achTimer=setTimeout(()=>el.classList.remove('on'),3200);
 }
 
-// ═══════════════════════════════════════
+// ═══════════════════════════════════════════════════
 // NOTIFICATIONS
-// ═══════════════════════════════════════
+// ═══════════════════════════════════════════════════
 function ntf(msg,type='blue'){
   const n=document.getElementById('notif');
   const c={green:'#00ff9d',red:'#ff4444',blue:'#00c8ff',purple:'#e879f9'};
   n.style.color=c[type]||c.blue;n.style.borderColor=c[type]||c.blue;
   n.textContent=msg;n.classList.add('on');
   if(ntTimer)clearTimeout(ntTimer);
-  ntTimer=setTimeout(()=>n.classList.remove('on'),2200);
+  ntTimer=setTimeout(()=>n.classList.remove('on'),2400);
 }
 
-// ═══════════════════════════════════════
-// PARTICLE SYSTEM
-// ═══════════════════════════════════════
-const PC={
-  gc:['#ff6633','#ff4400','#ff8855'],go:['#ffaa33','#ff8800','#ffcc44'],
-  gg:['#ffee44','#ffdd00','#ffffaa'],gn:['#33ff66','#00ff44','#88ffaa'],
-  gs:['#ffdd00','#ffee55','#fff066'],gw2:['#88ccff','#aaddff'],
-  gh:['#3399ff','#55aaff','#88ccff'],ggeo:['#ff4422','#ff6633','#ff8844'],
-  gf:['#ff9900','#ffbb00','#ff7700'],gorb:['#ffff00','#ffee00','#ffffaa'],
-  ganti:['#ff44ff','#cc00ff','#ff88ff'],gdy:['#ff9933','#ffaa44','#ffcc88'],
-  gdpe:['#00ffff','#00ccff','#88ffff'],gdcs:['#ff9900','#ffcc00','#fff','#ff6600'],
-  gmp:['#ff00ff','#ff44ff','#fff','#cc00ff'],
-  gpulsar:['#fff','#aabbff','#eeeeff','#ffffff'],
-  gquasar:['#ff4400','#ff8800','#ffcc00','#ff2200'],
-  gnmerge:['#66ffff','#ff66ff','#00ffee','#ff00ff'],
-  gzpt:['#ffffff','#ccccff','#aaaaff','#ffffff'],
-  gvac:['#ffaa00','#ff8800','#ffdd88'],
-  gcstr:['#00ffaa','#00ff55','#88ffcc'],
-  gbrane:['#ff00aa','#aa00ff','#ff44cc','#0000ff'],
-  gkd1:['#00ff88','#00dd66','#88ffcc'],
-  gkd2:['#ffcc00','#ff9900','#ffee88'],
-  gkd3:['#ff44ff','#aa00ff','#ff88ff'],
-  gkd4:['#00ccff','#aa00ff','#ff0000','#ffffff'],
-  gomega:['#ffff00','#00ffff','#ff00ff','#ffffff','#ff8800'],
-};
+// ═══════════════════════════════════════════════════
+// SAVE SYSTEM (artifact persistent storage)
+// ═══════════════════════════════════════════════════
+const NUM_SLOTS=3;
+function stateToSave(){
+  return{
+    credits:G.credits,totalEnergy:G.totalEnergy,currentPower:G.currentPower,creditRate:G.creditRate,
+    gridCols:G.gridCols,gridRows:G.gridRows,cells:G.cells,
+    bought:G.bought,aiRes:G.aiRes,lastAiResEra:G.lastAiResEra,
+    rebirths:G.rebirths,rebirthMult:G.rebirthMult,rebirthUnlocked:G.rebirthUnlocked,
+    rebirthBuffs:G.rebirthBuffs,startCreditMult:G.startCreditMult,permRows:G.permRows,permCols:G.permCols,fuelCapMult:G.fuelCapMult,
+    era:G.era,seenEras:[...G.seenEras],
+    fuel:G.fuel,deadFuels:[...G.deadFuels],
+    permUpgrades:G.permUpgrades,achievementsEarned:[...G.achievementsEarned],
+    negEvents:G.negEvents,darkEnergy:G.darkEnergy,infusions:G.infusions,connections:G.connections,
+    savedAt:Date.now(),
+  };
+}
+function loadFromSave(s){
+  if(!s)return;
+  G.credits=s.credits||500;G.totalEnergy=s.totalEnergy||0;G.currentPower=s.currentPower||0;G.creditRate=s.creditRate||0;
+  G.gridCols=s.gridCols||12;G.gridRows=s.gridRows||9;G.cells=s.cells||{};
+  G.bought=s.bought||{};G.aiRes=s.aiRes||[];G.lastAiResEra=s.lastAiResEra||'';
+  G.rebirths=s.rebirths||0;G.rebirthMult=s.rebirthMult||1;G.rebirthUnlocked=s.rebirthUnlocked||false;
+  G.rebirthBuffs=s.rebirthBuffs||[];G.startCreditMult=s.startCreditMult||1;G.permRows=s.permRows||0;G.permCols=s.permCols||0;G.fuelCapMult=s.fuelCapMult||1;
+  G.era=s.era||'I';G.seenEras=new Set(s.seenEras||['I']);
+  G.fuel=s.fuel||{coal:600*G.fuelCapMult,oil:900*G.fuelCapMult,gas:750*G.fuelCapMult};
+  G.deadFuels=new Set(s.deadFuels||[]);
+  G.permUpgrades=s.permUpgrades||{};G.achievementsEarned=new Set(s.achievementsEarned||[]);
+  G.negEvents=s.negEvents||0;G.darkEnergy=s.darkEnergy||0;G.infusions=s.infusions||{};G.connections=s.connections||[];
+  G.selTech=null;G.demMode=false;G.connectMode=false;G.connectFrom=null;
+}
+async function saveToSlot(slot){
+  try{
+    const data=JSON.stringify(stateToSave());
+    await window.storage.set(`ea_slot_${slot}`,data);
+    ntf(`Saved to Slot ${slot+1}!`,'green');
+  }catch(e){ntf('Save failed','red');}
+  buildSlotList();
+}
+async function loadFromSlot(slot){
+  try{
+    const res=await window.storage.get(`ea_slot_${slot}`);
+    if(!res)return;
+    loadFromSave(JSON.parse(res.value));
+    G.currentPower=0;G.creditRate=0;
+    buildGrid();buildTechPanel();buildResPanel();updateStats();recalc();
+    reRender();
+    ntf(`Loaded Slot ${slot+1}!`,'blue');
+    closeSave();
+  }catch(e){ntf('Load failed','red');}
+}
+async function deleteSlot(slot){
+  try{await window.storage.delete(`ea_slot_${slot}`);}catch(e){}
+  ntf(`Slot ${slot+1} deleted.`,'red');
+  buildSlotList();
+}
+async function autoSave(){
+  try{await window.storage.set(`ea_slot_${G.currentSlot}`,JSON.stringify(stateToSave()));}catch(e){}
+}
+async function buildSlotList(){
+  const list=document.getElementById('slot-list');
+  list.innerHTML='<div style="font-size:8px;color:var(--muted);margin-bottom:8px">Loading slots...</div>';
+  const slots=[];
+  for(let i=0;i<NUM_SLOTS;i++){
+    try{
+      const res=await window.storage.get(`ea_slot_${i}`);
+      if(res){const d=JSON.parse(res.value);slots.push({i,data:d});}
+      else slots.push({i,data:null});
+    }catch(e){slots.push({i,data:null});}
+  }
+  list.innerHTML=slots.map(s=>{
+    const d=s.data;
+    const isActive=s.i===G.currentSlot;
+    const meta=d?`ERA ${d.era} • ${fe(d.totalEnergy||0)} • ${new Date(d.savedAt).toLocaleString()}`:'Empty';
+    const icon=d?(s.i===0?'🌍':s.i===1?'🌌':'♾'):'⬜';
+    return`<div class="slot" style="${isActive?'border-color:var(--accent2)':''}">
+      <div class="slot-ico">${icon}</div>
+      <div class="slot-info">
+        <div class="slot-name">Slot ${s.i+1}${isActive?' (active)':''}</div>
+        <div class="slot-meta">${meta}</div>
+      </div>
+      <div class="slot-btns">
+        <button class="slot-btn slot-save" onclick="saveToSlot(${s.i})">Save</button>
+        ${d?`<button class="slot-btn slot-load" onclick="loadFromSlot(${s.i})">Load</button>`:''}
+        ${d?`<button class="slot-btn slot-del" onclick="deleteSlot(${s.i})">✕</button>`:''}
+      </div>
+    </div>`;
+  }).join('');
+}
+function openSave(){document.getElementById('savemod').classList.add('on');buildSlotList();}
+function closeSave(){document.getElementById('savemod').classList.remove('on');}
 
+// ═══════════════════════════════════════════════════
+// BIG BANG ANIMATION
+// ═══════════════════════════════════════════════════
+function triggerBigBang(mult){
+  const ov=document.getElementById('bbang');
+  const cv=document.getElementById('bbcanvas');
+  cv.width=window.innerWidth;cv.height=window.innerHeight;
+  bbCanvas=cv;bbCtx=cv.getContext('2d');bbParts=[];
+  document.getElementById('bbt-sub').innerHTML=`Universe reborn.<br>Permanent multiplier: ×${G.rebirthMult.toFixed(1)}<br>Rebirth #${G.rebirths}`;
+  ov.classList.add('on');
+  const cx=cv.width/2,cy=cv.height/2;
+  for(let i=0;i<400;i++){
+    const a=Math.random()*Math.PI*2,spd=2+Math.random()*14;
+    bbParts.push({x:cx,y:cy,vx:Math.cos(a)*spd,vy:Math.sin(a)*spd,
+      life:1,dec:0.003+Math.random()*0.007,sz:2+Math.random()*7,
+      col:`hsl(${Math.random()*360},100%,70%)`});
+  }
+  animBB();
+  setTimeout(()=>ov.classList.remove('on'),4500);
+}
+function animBB(){
+  if(!bbCtx)return;
+  bbCtx.fillStyle='rgba(0,0,0,0.05)';
+  bbCtx.fillRect(0,0,bbCanvas.width,bbCanvas.height);
+  bbParts=bbParts.filter(p=>{
+    p.x+=p.vx;p.y+=p.vy;p.life-=p.dec;
+    if(p.life<=0)return false;
+    bbCtx.save();bbCtx.globalAlpha=p.life;bbCtx.fillStyle=p.col;
+    bbCtx.shadowBlur=16;bbCtx.shadowColor=p.col;
+    bbCtx.beginPath();bbCtx.arc(p.x,p.y,p.sz*p.life,0,Math.PI*2);bbCtx.fill();bbCtx.restore();
+    return true;
+  });
+  if(bbParts.length>0||document.getElementById('bbang').classList.contains('on'))requestAnimationFrame(animBB);
+}
+
+// ═══════════════════════════════════════════════════
+// PARTICLES
+// ═══════════════════════════════════════════════════
+const PC={
+  gc:['#ff6633','#ff4400','#ff8855'],go:['#ffaa33','#ff8800','#ffcc44'],gg:['#ffee44','#ffdd00','#ffffaa'],
+  gn:['#33ff66','#00ff44','#88ffaa'],gs:['#ffdd00','#ffee55','#fff066'],gw2:['#88ccff','#aaddff'],
+  gh:['#3399ff','#55aaff','#88ccff'],ggeo:['#ff4422','#ff6633','#ff8844'],gf:['#ff9900','#ffbb00','#ff7700'],
+  gorb:['#ffff00','#ffee00','#ffffaa'],ganti:['#ff44ff','#cc00ff','#ff88ff'],gdy:['#ff9933','#ffaa44','#ffcc88'],
+  gdpe:['#00ffff','#00ccff','#88ffff'],gdcs:['#ff9900','#ffcc00','#fff','#ff6600'],gmp:['#ff00ff','#ff44ff','#fff','#cc00ff'],
+  gpulsar:['#fff','#aabbff','#eeeeff'],gquasar:['#ff4400','#ff8800','#ffcc00'],gnmerge:['#66ffff','#ff66ff','#00ffee'],
+  gzpt:['#fff','#ccccff','#aaaaff'],gvac:['#ffaa00','#ff8800','#ffdd88'],gcstr:['#00ffaa','#00ff55','#88ffcc'],
+  gbrane:['#ff00aa','#aa00ff','#ff44cc'],gkd1:['#00ff88','#00dd66'],gkd2:['#ffcc00','#ff9900'],
+  gkd3:['#ff44ff','#aa00ff','#ff88ff'],gkd4:['#00ccff','#aa00ff','#ff0000','#fff'],
+  gomega:['#ffff00','#00ffff','#ff00ff','#fff','#ff8800'],gdead:['#444','#333','#555'],
+};
 function resizeCv(){
   const w=document.getElementById('gw');
   canvas=document.getElementById('pc');
-  canvas.width=Math.max(w.scrollWidth,900);
-  canvas.height=Math.max(w.scrollHeight,700);
+  canvas.width=Math.max(w.scrollWidth,900);canvas.height=Math.max(w.scrollHeight,700);
   ctx=canvas.getContext('2d');
 }
-function cellXY(k){
-  const[r,c]=k.split(',').map(Number);
-  return{x:GPAD+c*CSIZ+CSIZ/2,y:GPAD+r*CSIZ+CSIZ/2};
-}
-function burst(k,tech){
+function cellXY(k){const[r,c]=k.split(',').map(Number);return{x:GPAD+c*CSIZ+CSIZ/2,y:GPAD+r*CSIZ+CSIZ/2};}
+function burst(k,tech,death=false,dark=false){
   const{x,y}=cellXY(k);
-  const cols=PC[tech.gl]||['#fff'];
-  const count=tech.era==='Ω'?80:tech.era==='XII'?50:tech.era>='IX'?36:24;
+  const cols=death?['#ff4400','#ff2200','#882200','#444']:
+             dark?['#cc00ff','#8800cc','#ff44ff','#ffffff','#440066']:
+             PC[tech.gl]||['#fff'];
+  const count=dark?50:death?40:tech.era==='Ω'?80:tech.era==='XII'?50:tech.era>='IX'?36:24;
   for(let i=0;i<count;i++){
-    const a=Math.random()*Math.PI*2,spd=1.5+Math.random()*(tech.era==='Ω'?8:4);
+    const a=Math.random()*Math.PI*2,spd=dark?2+Math.random()*6:death?3+Math.random()*5:1.5+Math.random()*5;
     parts.push({x,y,vx:Math.cos(a)*spd,vy:Math.sin(a)*spd-1,
-      life:1,dec:0.018+Math.random()*0.03,sz:2+Math.random()*(tech.era==='Ω'?8:5),
+      life:1,dec:0.015+Math.random()*0.025,sz:dark?3+Math.random()*7:2+Math.random()*6,
       col:cols[Math.floor(Math.random()*cols.length)],type:'burst'});
   }
 }
 function spawnIdle(k,tech){
   const{x,y}=cellXY(k);
+  const c=G.cells[k];if(c&&c.dead)return;
   const cols=PC[tech.gl]||['#fff'];
   const a=Math.random()*Math.PI*2,spd=0.1+Math.random()*0.7;
-  const eraW={'I':1,'II':1,'III':2,'IV':3,'V':4,'VI':6,'VII':8,'VIII':10,'IX':12,'X':14,'XI':16,'XII':18,'Ω':25};
-  parts.push({
-    x:x+(Math.random()-0.5)*18,y:y+(Math.random()-0.5)*18,
-    vx:Math.cos(a)*spd,vy:Math.sin(a)*spd-0.35,
-    life:1,dec:0.007+Math.random()*0.012,sz:1+Math.random()*2.5,
-    col:cols[Math.floor(Math.random()*cols.length)],
-    w:eraW[tech.era]||1,type:'idle'
-  });
+  const eraW={I:1,II:1,III:2,IV:3,V:5,VI:8,VII:10,VIII:14,IX:16,X:18,XI:20,XII:22,'Ω':30};
+  parts.push({x:x+(Math.random()-.5)*18,y:y+(Math.random()-.5)*18,
+    vx:Math.cos(a)*spd,vy:Math.sin(a)*spd-.35,life:1,
+    dec:0.007+Math.random()*0.012,sz:1+Math.random()*2.5,
+    col:cols[Math.floor(Math.random()*cols.length)],type:'idle'});
 }
 function tickParts(){
-  idleTk++;
-  if(idleTk%2!==0)return;
+  idleTk++;if(idleTk%2!==0)return;
   Object.keys(G.cells).forEach(k=>{
-    const t=TECHS.find(t=>t.id===G.cells[k].id);
-    if(!t)return;
-    const w=({'I':1,'II':1,'III':2,'IV':3,'V':5,'VI':8,'VII':10,'VIII':14,'IX':16,'X':18,'XI':20,'XII':22,'Ω':30})[t.era]||1;
-    for(let i=0;i<Math.min(w,20);i++)spawnIdle(k,t);
+    const c=G.cells[k];if(c.dead)return;
+    const t=TECHS.find(t=>t.id===c.id);if(!t)return;
+    const w={I:1,II:1,III:2,IV:3,V:5,VI:8,VII:10,VIII:14,IX:16,X:18,XI:20,XII:22,'Ω':30}[t.era]||1;
+    for(let i=0;i<Math.min(w,18);i++)spawnIdle(k,t);
   });
 }
 function animParts(){
   if(ctx){
     ctx.clearRect(0,0,canvas.width,canvas.height);
+    drawSynergyBeams();
     parts=parts.filter(p=>{
       p.x+=p.vx;p.y+=p.vy;p.vy-=0.025;p.life-=p.dec;
       if(p.life<=0)return false;
-      ctx.save();
-      ctx.globalAlpha=p.life*0.8;
-      ctx.fillStyle=p.col;
-      ctx.shadowBlur=p.type==='burst'?16:8;
-      ctx.shadowColor=p.col;
-      ctx.beginPath();
-      ctx.arc(p.x,p.y,p.sz*p.life,0,Math.PI*2);
-      ctx.fill();
-      ctx.restore();
+      ctx.save();ctx.globalAlpha=p.life*.8;ctx.fillStyle=p.col;
+      ctx.shadowBlur=p.type==='burst'?16:8;ctx.shadowColor=p.col;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.sz*p.life,0,Math.PI*2);ctx.fill();ctx.restore();
       return true;
     });
-    // Limit particle count for perf
-    if(parts.length>1200)parts=parts.slice(parts.length-1200);
+    if(parts.length>1400)parts=parts.slice(parts.length-1400);
   }
   requestAnimationFrame(animParts);
 }
 
-// ═══════════════════════════════════════
+// ═══════════════════════════════════════════════════
 // INIT
-// ═══════════════════════════════════════
-function init(){
-  buildGrid();buildTechPanel();buildResPanel();updateStats();
+// ═══════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
+// DARK MATTER INFUSION MODAL
+// ═══════════════════════════════════════════════════
+function openInfuseModal(k){
+  if(!G.cells[k])return;
+  const t=TECHS.find(t=>t.id===G.cells[k].id);if(!t)return;
+  const inf=G.infusions[k];
+  const count=inf?inf.count:0;
+  const cost=infusionCost(t.id,count);
+  const nextMult=infusionMult(count);
+  const curMult=count>0?inf.mult:1;
+  const modal=document.getElementById('infuse-modal');
+  document.getElementById('im-title').textContent=inf?inf.name:`Infuse: ${t.n}`;
+  document.getElementById('im-icon').textContent=`${t.ic}`;
+  document.getElementById('im-level').textContent=`Infusion Level: ${count}`;
+  document.getElementById('im-cur').textContent=count>0?`Current bonus: ×${curMult}`:'Not yet infused';
+  document.getElementById('im-next').textContent=`Next: ×${nextMult} output`;
+  document.getElementById('im-cost').textContent=`Cost: ${fde(cost)}`;
+  document.getElementById('im-de').textContent=`Your DE: ${fde(G.darkEnergy)}`;
+  document.getElementById('im-btn').onclick=()=>{infuseCell(k);openInfuseModal(k);};
+  document.getElementById('im-btn').disabled=G.darkEnergy<cost;
+  document.getElementById('im-btn').style.opacity=G.darkEnergy<cost?'0.4':'1';
+  modal.classList.add('on');
+  modal._key=k;
+}
+function closeInfuse(){document.getElementById('infuse-modal').classList.remove('on');}
+
+// ═══════════════════════════════════════════════════
+// SYNERGY BEAM RENDERING ON CANVAS
+// ═══════════════════════════════════════════════════
+let beamAnim=0;
+function drawSynergyBeams(){
+  if(!ctx)return;
+  beamAnim+=0.04;
+  let connIndex=0;
+  G.connections.forEach(conn=>{
+    if(!G.cells[conn.from]||!G.cells[conn.to])return;
+    const src=cellXY(conn.from);
+    const dst=cellXY(conn.to);
+    const pending=conn.pending;
+    const pulse=pending?0.3:0.35+0.25*Math.sin(beamAnim+src.x*0.01+src.y*0.01);
+    const isInfused=G.infusions[conn.from]||G.infusions[conn.to];
+    const col=pending?'#555555':isInfused?'#cc00ff':'#00ff9d';
+
+    ctx.save();
+    // Beam line
+    ctx.globalAlpha=pulse;
+    ctx.strokeStyle=col;
+    ctx.lineWidth=pending?1:1.5;
+    ctx.shadowBlur=pending?2:6;
+    ctx.shadowColor=col;
+    ctx.setLineDash(pending?[3,5]:[5,6]);
+    ctx.lineDashOffset=-beamAnim*6;
+    ctx.beginPath();
+    ctx.moveTo(src.x,src.y);
+    ctx.lineTo(dst.x,dst.y);
+    ctx.stroke();
+
+    if(!pending){
+      // Travelling dot
+      const t2=(Math.sin(beamAnim*0.8+connIndex)*0.5+0.5);
+      const dx=src.x+(dst.x-src.x)*t2;
+      const dy=src.y+(dst.y-src.y)*t2;
+      ctx.globalAlpha=pulse*1.5;
+      ctx.setLineDash([]);
+      ctx.fillStyle=col;
+      ctx.shadowBlur=10;
+      ctx.beginPath();
+      ctx.arc(dx,dy,3,0,Math.PI*2);
+      ctx.fill();
+
+      // Label — offset perpendicular to beam so they don't stack
+      const mx=(src.x+dst.x)/2;
+      const my=(src.y+dst.y)/2;
+      // Perpendicular offset alternates per connection index
+      const angle=Math.atan2(dst.y-src.y,dst.x-src.x);
+      const perpAngle=angle+Math.PI/2;
+      const offsetDir=(connIndex%2===0)?1:-1;
+      const offset=14;
+      const lx=mx+Math.cos(perpAngle)*offset*offsetDir;
+      const ly=my+Math.sin(perpAngle)*offset*offsetDir;
+
+      // Clamp label inside canvas with padding
+      const pad=4;
+      const clampedLy=Math.max(14+pad, Math.min(canvas.height-pad, ly));
+      const clampedLx=Math.max(60+pad, Math.min(canvas.width-60-pad, lx));
+
+      // Label background pill
+      ctx.font='bold 8px Share Tech Mono';
+      const labelText=`${conn.label} +${Math.round(conn.bonus*100)}%`;
+      const tw=ctx.measureText(labelText).width;
+      ctx.globalAlpha=0.82;
+      ctx.fillStyle='rgba(0,10,5,0.85)';
+      ctx.beginPath();
+      ctx.roundRect(clampedLx-tw/2-4, clampedLy-9, tw+8, 13, 3);
+      ctx.fill();
+
+      // Label text
+      ctx.globalAlpha=0.95;
+      ctx.fillStyle=col;
+      ctx.textAlign='center';
+      ctx.shadowBlur=3;
+      ctx.shadowColor=col;
+      ctx.fillText(labelText, clampedLx, clampedLy);
+    }
+    ctx.restore();
+    connIndex++;
+  });
+}
+
+function setupCanvasInteraction(){
+  const gw=document.getElementById('gw');
+  gw.addEventListener('contextmenu',(e)=>{
+    // Only intercept right-click in connect mode on the canvas itself (not on cells)
+    if(!G.connectMode)return;
+    e.preventDefault();
+    const rect=canvas.getBoundingClientRect();
+    const mx=e.clientX-rect.left+gw.scrollLeft;
+    const my=e.clientY-rect.top+gw.scrollTop;
+    // Find closest connection beam to click point
+    let closest=null,closestDist=20;
+    G.connections.forEach(conn=>{
+      if(!G.cells[conn.from]||!G.cells[conn.to])return;
+      const src=cellXY(conn.from);
+      const dst=cellXY(conn.to);
+      // Distance from point to line segment
+      const dx=dst.x-src.x,dy=dst.y-src.y;
+      const len2=dx*dx+dy*dy;
+      let t=len2>0?((mx-src.x)*dx+(my-src.y)*dy)/len2:0;
+      t=Math.max(0,Math.min(1,t));
+      const px=src.x+t*dx,py=src.y+t*dy;
+      const d=Math.hypot(mx-px,my-py);
+      if(d<closestDist){closestDist=d;closest=conn;}
+    });
+    if(closest){removeConnection(closest.id);}
+  });
+}
+
+function openNewTab(){
+  const html=document.documentElement.outerHTML;
+  const blob=new Blob([html],{type:'text/html'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;a.target='_blank';a.click();
+  setTimeout(()=>URL.revokeObjectURL(url),5000);
+}
+
+async function init(){
+  // Try to load auto-save slot 0
+  try{
+    const res=await window.storage.get('ea_slot_0');
+    if(res){
+      loadFromSave(JSON.parse(res.value));
+      ntf('Auto-save loaded!','green');
+    }
+  }catch(e){}
+  buildGrid();buildTechPanel();buildResPanel();updateStats();recalc();
   startTick();animParts();
+  setupCanvasInteraction();
   window.addEventListener('resize',resizeCv);
-  setTimeout(()=>{
-    const m=ERA_M['I'];
-    const card=document.getElementById('ec');
-    card.className='';
-    document.getElementById('et').textContent=m.t;
-    document.getElementById('ed').textContent=m.d;
-    document.getElementById('ec-rebirth').style.display='none';
-    document.getElementById('eo').classList.add('on');
-  },600);
+  // Show intro only if fresh game
+  if(!G.totalEnergy){
+    setTimeout(()=>{
+      document.getElementById('ec').className='';
+      document.getElementById('et').textContent='ERA I — FOSSIL AGE';
+      document.getElementById('ed').textContent='Coal, oil, and burning. A civilisation ignites its way to the future. Manage your fossil reserves — they will run out. Transition to clean energy before the lights go off.';
+      document.getElementById('ec-rb').style.display='none';
+      document.getElementById('eo').classList.add('on');
+    },700);
+  }
+  // Generate first AI research after short delay
+  setTimeout(aiGenerateResearch,3000);
 }
 init();
 </script>
